@@ -1,2 +1,0 @@
-/usr/bin/ar qc libstepper_motor_controller.a CMakeFiles/stepper_motor_controller.dir/src/stepper_motor_controller.cpp.o
-/usr/bin/ranlib libstepper_motor_controller.a

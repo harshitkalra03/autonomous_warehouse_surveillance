@@ -1,4 +1,0 @@
-[console_scripts]
-frontier_exploration.py = warehouse_navigation.frontier_exploration:main
-navigate_to_shelf.py = warehouse_navigation.shelf_navigator:main
-shelf_detector.py = warehouse_navigation.shelf_detector:main

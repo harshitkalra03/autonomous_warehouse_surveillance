@@ -1,9 +1,0 @@
-/home/sv/ros/software/onboard/ros_workspace/build/warehouse_scanning/CMakeFiles/uninstall.dir
-/home/sv/ros/software/onboard/ros_workspace/build/warehouse_scanning/CMakeFiles/warehouse_scanning_uninstall.dir
-/home/sv/ros/software/onboard/ros_workspace/build/warehouse_scanning/CMakeFiles/test.dir
-/home/sv/ros/software/onboard/ros_workspace/build/warehouse_scanning/CMakeFiles/edit_cache.dir
-/home/sv/ros/software/onboard/ros_workspace/build/warehouse_scanning/CMakeFiles/rebuild_cache.dir
-/home/sv/ros/software/onboard/ros_workspace/build/warehouse_scanning/CMakeFiles/list_install_components.dir
-/home/sv/ros/software/onboard/ros_workspace/build/warehouse_scanning/CMakeFiles/install.dir
-/home/sv/ros/software/onboard/ros_workspace/build/warehouse_scanning/CMakeFiles/install/local.dir
-/home/sv/ros/software/onboard/ros_workspace/build/warehouse_scanning/CMakeFiles/install/strip.dir
