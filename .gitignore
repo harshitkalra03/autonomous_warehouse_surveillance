@@ -1,0 +1,10 @@
+/offboard/.vscode/
+/offboard/ros_workspace/build/
+/offboard/ros_workspace/log/
+/offboard/ros_workspace/install/
+
+
+/onboard/.vscode/
+/onboard/ros_workspace/build/
+/onboard/ros_workspace/log/
+/onboard/ros_workspace/install/
