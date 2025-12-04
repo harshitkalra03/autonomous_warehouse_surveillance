@@ -1,0 +1,91 @@
+[0.030s] Invoking command in '/home/sv/ros/software/onboard/ros_workspace/build/hardware': AMENT_PREFIX_PATH=/home/sv/ros/software/onboard/ros_workspace/install/serial:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/sv/ros/software/onboard/ros_workspace/install/serial:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com LD_LIBRARY_PATH=/home/sv/ros/software/onboard/ros_workspace/install/serial/lib:${LD_LIBRARY_PATH} /usr/bin/cmake /home/sv/ros/software/onboard/ros_workspace/src/hardware -DCMAKE_INSTALL_PREFIX=/home/sv/ros/software/onboard/ros_workspace/install/hardware
+[0.255s] -- The C compiler identification is GNU 13.3.0
+[0.388s] -- The CXX compiler identification is GNU 13.3.0
+[0.455s] -- Detecting C compiler ABI info
+[0.855s] -- Detecting C compiler ABI info - done
+[0.903s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.904s] -- Detecting C compile features
+[0.905s] -- Detecting C compile features - done
+[0.948s] -- Detecting CXX compiler ABI info
+[1.368s] -- Detecting CXX compiler ABI info - done
+[1.416s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[1.417s] -- Detecting CXX compile features
+[1.421s] -- Detecting CXX compile features - done
+[1.455s] -- Found ament_cmake: 2.5.4 (/opt/ros/jazzy/share/ament_cmake/cmake)
+[2.020s] -- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter 
+[2.448s] -- Found serial: 1.2.1 (/home/sv/ros/software/onboard/ros_workspace/install/serial/share/serial/cmake)
+[2.473s] -- Found hardware_interface: 4.39.2 (/opt/ros/jazzy/share/hardware_interface/cmake)
+[2.726s] -- Found rosidl_generator_c: 4.6.6 (/opt/ros/jazzy/share/rosidl_generator_c/cmake)
+[2.803s] -- Found rosidl_generator_cpp: 4.6.6 (/opt/ros/jazzy/share/rosidl_generator_cpp/cmake)
+[2.885s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[2.982s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[3.962s] -- Found TinyXML2 via Config file: /usr/lib/x86_64-linux-gnu/cmake/tinyxml2
+[4.217s] -- Found rmw_implementation_cmake: 7.3.2 (/opt/ros/jazzy/share/rmw_implementation_cmake/cmake)
+[4.232s] -- Found rmw_fastrtps_cpp: 8.4.3 (/opt/ros/jazzy/share/rmw_fastrtps_cpp/cmake)
+[4.373s] -- Found TinyXML2 via Config file: /usr/lib/x86_64-linux-gnu/cmake/tinyxml2
+[4.674s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.13")  
+[4.684s] -- Found TinyXML2 via Config file: /usr/lib/x86_64-linux-gnu/cmake/tinyxml2
+[4.756s] -- Found FastRTPS: /opt/ros/jazzy/include (Required is at least version "2.13") 
+[4.763s] -- Found TinyXML2 via Config file: /usr/lib/x86_64-linux-gnu/cmake/tinyxml2
+[4.800s] -- Found TinyXML2 via Config file: /usr/lib/x86_64-linux-gnu/cmake/tinyxml2
+[4.842s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[6.162s] -- Found controller_manager: 4.39.2 (/opt/ros/jazzy/share/controller_manager/cmake)
+[6.914s] -- Configuring done (6.9s)
+[7.005s] -- Generating done (0.1s)
+[7.023s] -- Build files have been written to: /home/sv/ros/software/onboard/ros_workspace/build/hardware
+[7.048s] Invoked command in '/home/sv/ros/software/onboard/ros_workspace/build/hardware' returned '0': AMENT_PREFIX_PATH=/home/sv/ros/software/onboard/ros_workspace/install/serial:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/sv/ros/software/onboard/ros_workspace/install/serial:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com LD_LIBRARY_PATH=/home/sv/ros/software/onboard/ros_workspace/install/serial/lib:${LD_LIBRARY_PATH} /usr/bin/cmake /home/sv/ros/software/onboard/ros_workspace/src/hardware -DCMAKE_INSTALL_PREFIX=/home/sv/ros/software/onboard/ros_workspace/install/hardware
+[7.050s] Invoking command in '/home/sv/ros/software/onboard/ros_workspace/build/hardware': AMENT_PREFIX_PATH=/home/sv/ros/software/onboard/ros_workspace/install/serial:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/sv/ros/software/onboard/ros_workspace/install/serial:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com LD_LIBRARY_PATH=/home/sv/ros/software/onboard/ros_workspace/install/serial/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --build /home/sv/ros/software/onboard/ros_workspace/build/hardware -- -j16 -l16
+[7.263s] [ 75%] [32mBuilding CXX object CMakeFiles/hardware.dir/src/wheel.cpp.o[0m
+[7.263s] [ 75%] [32mBuilding CXX object CMakeFiles/hardware.dir/src/esp_comms.cpp.o[0m
+[7.263s] [ 75%] [32mBuilding CXX object CMakeFiles/hardware.dir/src/mecanumdrive_esp.cpp.o[0m
+[8.341s] [01m[K/home/sv/ros/software/onboard/ros_workspace/src/hardware/src/esp_comms.cpp:[m[K In member function ‘[01m[Kstd::string EspComms::[01;32m[KsendMsg[m[K(const std::string&, bool)[m[K’:
+[8.341s] [01m[K/home/sv/ros/software/onboard/ros_workspace/src/hardware/src/esp_comms.cpp:63:68:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kprint_output[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+[8.341s]    63 | std::string EspComms::sendMsg(const std::string &msg_to_send, [01;35m[Kbool print_output[m[K)
+[8.341s]       |                                                               [01;35m[K~~~~~^~~~~~~~~~~~[m[K
+[14.178s] [01m[K/home/sv/ros/software/onboard/ros_workspace/src/hardware/src/mecanumdrive_esp.cpp:[m[K In member function ‘[01m[Kvirtual hardware_interface::CallbackReturn MecanumDriveEsp::[01;32m[Kon_init[m[K(const hardware_interface::HardwareInfo&)[m[K’:
+[14.178s] [01m[K/home/sv/ros/software/onboard/ros_workspace/src/hardware/src/mecanumdrive_esp.cpp:11:51:[m[K [01;35m[Kwarning: [m[K‘[01m[Kvirtual rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn hardware_interface::HardwareComponentInterface::[01;32m[Kon_init[m[K(const hardware_interface::HardwareInfo&)[m[K’ is deprecated: Use on_init(const HardwareComponentInterfaceParams & params) instead. [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wdeprecated-declarations-Wdeprecated-declarations]8;;[m[K]
+[14.179s]    11 |   if ([01;35m[Khardware_interface::SystemInterface::on_init(info)[m[K != hardware_interface::CallbackReturn::SUCCESS)
+[14.179s]       |       [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~[m[K
+[14.179s] In file included from [01m[K/opt/ros/jazzy/include/hardware_interface/hardware_interface/system_interface.hpp:18[m[K,
+[14.179s]                  from [01m[K/home/sv/ros/software/onboard/ros_workspace/src/hardware/include/hardware/mecanumdrive_esp.h:8[m[K,
+[14.179s]                  from [01m[K/home/sv/ros/software/onboard/ros_workspace/src/hardware/src/mecanumdrive_esp.cpp:1[m[K:
+[14.179s] [01m[K/opt/ros/jazzy/include/hardware_interface/hardware_interface/hardware_component_interface.hpp:235:26:[m[K [01;36m[Knote: [m[Kdeclared here
+[14.179s]   235 |   virtual CallbackReturn [01;36m[Kon_init[m[K(const HardwareInfo & hardware_info)
+[14.179s]       |                          [01;36m[K^~~~~~~[m[K
+[20.209s] [100%] [32m[1mLinking CXX shared library libhardware.so[0m
+[20.834s] [100%] Built target hardware
+[20.878s] Invoked command in '/home/sv/ros/software/onboard/ros_workspace/build/hardware' returned '0': AMENT_PREFIX_PATH=/home/sv/ros/software/onboard/ros_workspace/install/serial:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/sv/ros/software/onboard/ros_workspace/install/serial:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com LD_LIBRARY_PATH=/home/sv/ros/software/onboard/ros_workspace/install/serial/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --build /home/sv/ros/software/onboard/ros_workspace/build/hardware -- -j16 -l16
+[20.880s] Invoking command in '/home/sv/ros/software/onboard/ros_workspace/build/hardware': AMENT_PREFIX_PATH=/home/sv/ros/software/onboard/ros_workspace/install/serial:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/sv/ros/software/onboard/ros_workspace/install/serial:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com LD_LIBRARY_PATH=/home/sv/ros/software/onboard/ros_workspace/install/serial/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --install /home/sv/ros/software/onboard/ros_workspace/build/hardware
+[20.900s] -- Install configuration: ""
+[20.900s] -- Installing: /home/sv/ros/software/onboard/ros_workspace/install/hardware/share/hardware/robot_hardware.xml
+[20.901s] -- Installing: /home/sv/ros/software/onboard/ros_workspace/install/hardware/lib/hardware/libhardware.so
+[20.905s] -- Set non-toolchain portion of runtime path of "/home/sv/ros/software/onboard/ros_workspace/install/hardware/lib/hardware/libhardware.so" to ""
+[20.905s] -- Installing: /home/sv/ros/software/onboard/ros_workspace/install/hardware/include/hardware
+[20.905s] -- Installing: /home/sv/ros/software/onboard/ros_workspace/install/hardware/include/hardware/hardware
+[20.906s] -- Installing: /home/sv/ros/software/onboard/ros_workspace/install/hardware/include/hardware/hardware/wheel.h
+[20.906s] -- Installing: /home/sv/ros/software/onboard/ros_workspace/install/hardware/include/hardware/hardware/mecanumdrive_esp.h
+[20.906s] -- Installing: /home/sv/ros/software/onboard/ros_workspace/install/hardware/include/hardware/hardware/esp_comms.h
+[20.907s] -- Installing: /home/sv/ros/software/onboard/ros_workspace/install/hardware/include/hardware/hardware/config.h
+[20.907s] -- Up-to-date: /home/sv/ros/software/onboard/ros_workspace/install/hardware/share/hardware/robot_hardware.xml
+[20.907s] -- Installing: /home/sv/ros/software/onboard/ros_workspace/install/hardware/share/hardware/environment/library_path.sh
+[20.908s] -- Installing: /home/sv/ros/software/onboard/ros_workspace/install/hardware/share/hardware/environment/library_path.dsv
+[20.908s] -- Installing: /home/sv/ros/software/onboard/ros_workspace/install/hardware/share/ament_index/resource_index/package_run_dependencies/hardware
+[20.909s] -- Installing: /home/sv/ros/software/onboard/ros_workspace/install/hardware/share/ament_index/resource_index/parent_prefix_path/hardware
+[20.909s] -- Installing: /home/sv/ros/software/onboard/ros_workspace/install/hardware/share/hardware/environment/ament_prefix_path.sh
+[20.910s] -- Installing: /home/sv/ros/software/onboard/ros_workspace/install/hardware/share/hardware/environment/ament_prefix_path.dsv
+[20.910s] -- Installing: /home/sv/ros/software/onboard/ros_workspace/install/hardware/share/hardware/environment/path.sh
+[20.910s] -- Installing: /home/sv/ros/software/onboard/ros_workspace/install/hardware/share/hardware/environment/path.dsv
+[20.911s] -- Installing: /home/sv/ros/software/onboard/ros_workspace/install/hardware/share/hardware/local_setup.bash
+[20.911s] -- Installing: /home/sv/ros/software/onboard/ros_workspace/install/hardware/share/hardware/local_setup.sh
+[20.912s] -- Installing: /home/sv/ros/software/onboard/ros_workspace/install/hardware/share/hardware/local_setup.zsh
+[20.912s] -- Installing: /home/sv/ros/software/onboard/ros_workspace/install/hardware/share/hardware/local_setup.dsv
+[20.912s] -- Installing: /home/sv/ros/software/onboard/ros_workspace/install/hardware/share/hardware/package.dsv
+[20.913s] -- Installing: /home/sv/ros/software/onboard/ros_workspace/install/hardware/share/ament_index/resource_index/packages/hardware
+[20.913s] -- Installing: /home/sv/ros/software/onboard/ros_workspace/install/hardware/share/ament_index/resource_index/hardware_interface__pluginlib__plugin/hardware
+[20.914s] -- Installing: /home/sv/ros/software/onboard/ros_workspace/install/hardware/share/hardware/cmake/ament_cmake_export_libraries-extras.cmake
+[20.914s] -- Installing: /home/sv/ros/software/onboard/ros_workspace/install/hardware/share/hardware/cmake/ament_cmake_export_include_directories-extras.cmake
+[20.915s] -- Installing: /home/sv/ros/software/onboard/ros_workspace/install/hardware/share/hardware/cmake/ament_cmake_export_dependencies-extras.cmake
+[20.915s] -- Installing: /home/sv/ros/software/onboard/ros_workspace/install/hardware/share/hardware/cmake/hardwareConfig.cmake
+[20.915s] -- Installing: /home/sv/ros/software/onboard/ros_workspace/install/hardware/share/hardware/cmake/hardwareConfig-version.cmake
+[20.916s] -- Installing: /home/sv/ros/software/onboard/ros_workspace/install/hardware/share/hardware/package.xml
+[20.920s] Invoked command in '/home/sv/ros/software/onboard/ros_workspace/build/hardware' returned '0': AMENT_PREFIX_PATH=/home/sv/ros/software/onboard/ros_workspace/install/serial:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/sv/ros/software/onboard/ros_workspace/install/serial:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com LD_LIBRARY_PATH=/home/sv/ros/software/onboard/ros_workspace/install/serial/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --install /home/sv/ros/software/onboard/ros_workspace/build/hardware

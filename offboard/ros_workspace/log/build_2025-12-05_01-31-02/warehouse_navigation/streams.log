@@ -1,0 +1,51 @@
+[3.096s] Invoking command in '/home/sv/ros/software/offboard/ros_workspace/src/warehouse_navigation': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/sv/ros/software/offboard/ros_workspace/build/warehouse_navigation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/warehouse_navigation build --build-base /home/sv/ros/software/offboard/ros_workspace/build/warehouse_navigation/build install --record /home/sv/ros/software/offboard/ros_workspace/build/warehouse_navigation/install.log --single-version-externally-managed install_data
+[4.122s] running egg_info
+[4.124s] creating ../../build/warehouse_navigation/warehouse_navigation.egg-info
+[4.202s] writing ../../build/warehouse_navigation/warehouse_navigation.egg-info/PKG-INFO
+[4.203s] writing dependency_links to ../../build/warehouse_navigation/warehouse_navigation.egg-info/dependency_links.txt
+[4.204s] writing entry points to ../../build/warehouse_navigation/warehouse_navigation.egg-info/entry_points.txt
+[4.205s] writing requirements to ../../build/warehouse_navigation/warehouse_navigation.egg-info/requires.txt
+[4.205s] writing top-level names to ../../build/warehouse_navigation/warehouse_navigation.egg-info/top_level.txt
+[4.206s] writing manifest file '../../build/warehouse_navigation/warehouse_navigation.egg-info/SOURCES.txt'
+[4.362s] reading manifest file '../../build/warehouse_navigation/warehouse_navigation.egg-info/SOURCES.txt'
+[4.366s] writing manifest file '../../build/warehouse_navigation/warehouse_navigation.egg-info/SOURCES.txt'
+[4.367s] running build
+[4.368s] running build_py
+[4.369s] creating /home/sv/ros/software/offboard/ros_workspace/build/warehouse_navigation/build
+[4.370s] creating /home/sv/ros/software/offboard/ros_workspace/build/warehouse_navigation/build/lib
+[4.370s] creating /home/sv/ros/software/offboard/ros_workspace/build/warehouse_navigation/build/lib/warehouse_navigation
+[4.371s] copying warehouse_navigation/shelf_detector.py -> /home/sv/ros/software/offboard/ros_workspace/build/warehouse_navigation/build/lib/warehouse_navigation
+[4.371s] copying warehouse_navigation/navigate_to_shelf.py -> /home/sv/ros/software/offboard/ros_workspace/build/warehouse_navigation/build/lib/warehouse_navigation
+[4.371s] copying warehouse_navigation/frontier_exploration.py -> /home/sv/ros/software/offboard/ros_workspace/build/warehouse_navigation/build/lib/warehouse_navigation
+[4.371s] copying warehouse_navigation/__init__.py -> /home/sv/ros/software/offboard/ros_workspace/build/warehouse_navigation/build/lib/warehouse_navigation
+[4.374s] running install
+[4.393s] running install_lib
+[4.479s] creating /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/lib/python3.12/site-packages/warehouse_navigation
+[4.481s] copying /home/sv/ros/software/offboard/ros_workspace/build/warehouse_navigation/build/lib/warehouse_navigation/shelf_detector.py -> /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/lib/python3.12/site-packages/warehouse_navigation
+[4.482s] copying /home/sv/ros/software/offboard/ros_workspace/build/warehouse_navigation/build/lib/warehouse_navigation/navigate_to_shelf.py -> /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/lib/python3.12/site-packages/warehouse_navigation
+[4.482s] copying /home/sv/ros/software/offboard/ros_workspace/build/warehouse_navigation/build/lib/warehouse_navigation/frontier_exploration.py -> /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/lib/python3.12/site-packages/warehouse_navigation
+[4.484s] copying /home/sv/ros/software/offboard/ros_workspace/build/warehouse_navigation/build/lib/warehouse_navigation/__init__.py -> /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/lib/python3.12/site-packages/warehouse_navigation
+[4.484s] byte-compiling /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/lib/python3.12/site-packages/warehouse_navigation/shelf_detector.py to shelf_detector.cpython-312.pyc
+[4.496s] byte-compiling /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/lib/python3.12/site-packages/warehouse_navigation/navigate_to_shelf.py to navigate_to_shelf.cpython-312.pyc
+[4.499s] byte-compiling /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/lib/python3.12/site-packages/warehouse_navigation/frontier_exploration.py to frontier_exploration.cpython-312.pyc
+[4.507s] byte-compiling /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/lib/python3.12/site-packages/warehouse_navigation/__init__.py to __init__.cpython-312.pyc
+[4.507s] running install_data
+[4.508s] creating /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/share/ament_index
+[4.508s] creating /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/share/ament_index/resource_index
+[4.509s] creating /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/share/ament_index/resource_index/packages
+[4.509s] copying resource/warehouse_navigation -> /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/share/ament_index/resource_index/packages
+[4.510s] copying package.xml -> /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/share/warehouse_navigation
+[4.510s] creating /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/share/warehouse_navigation/config
+[4.510s] copying config/nav2_params.yaml -> /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/share/warehouse_navigation/config
+[4.511s] copying config/ekf.yaml -> /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/share/warehouse_navigation/config
+[4.512s] copying config/default.rviz -> /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/share/warehouse_navigation/config
+[4.512s] creating /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/share/warehouse_navigation/launch
+[4.514s] copying launch/explore_shelf.launch.py -> /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/share/warehouse_navigation/launch
+[4.514s] running install_egg_info
+[4.590s] Copying ../../build/warehouse_navigation/warehouse_navigation.egg-info to /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/lib/python3.12/site-packages/warehouse_navigation-0.0.0-py3.12.egg-info
+[4.593s] running install_scripts
+[5.070s] Installing frontier_exploration.py script to /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/lib/warehouse_navigation
+[5.075s] Installing navigate_to_shelf.py script to /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/lib/warehouse_navigation
+[5.075s] Installing shelf_detector.py script to /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/lib/warehouse_navigation
+[5.076s] writing list of installed files to '/home/sv/ros/software/offboard/ros_workspace/build/warehouse_navigation/install.log'
+[5.165s] Invoked command in '/home/sv/ros/software/offboard/ros_workspace/src/warehouse_navigation' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/sv/ros/software/offboard/ros_workspace/build/warehouse_navigation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/warehouse_navigation build --build-base /home/sv/ros/software/offboard/ros_workspace/build/warehouse_navigation/build install --record /home/sv/ros/software/offboard/ros_workspace/build/warehouse_navigation/install.log --single-version-externally-managed install_data

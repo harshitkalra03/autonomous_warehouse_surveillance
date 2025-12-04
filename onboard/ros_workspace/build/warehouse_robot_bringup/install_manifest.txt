@@ -1,0 +1,17 @@
+/home/sv/ros/software/onboard/ros_workspace/install/warehouse_robot_bringup/share/warehouse_robot_bringup/launch/onboard.launch.py
+/home/sv/ros/software/onboard/ros_workspace/install/warehouse_robot_bringup/share/warehouse_robot_bringup/config/my_robot_controllers.yaml
+/home/sv/ros/software/onboard/ros_workspace/install/warehouse_robot_bringup/share/ament_index/resource_index/package_run_dependencies/warehouse_robot_bringup
+/home/sv/ros/software/onboard/ros_workspace/install/warehouse_robot_bringup/share/ament_index/resource_index/parent_prefix_path/warehouse_robot_bringup
+/home/sv/ros/software/onboard/ros_workspace/install/warehouse_robot_bringup/share/warehouse_robot_bringup/environment/ament_prefix_path.sh
+/home/sv/ros/software/onboard/ros_workspace/install/warehouse_robot_bringup/share/warehouse_robot_bringup/environment/ament_prefix_path.dsv
+/home/sv/ros/software/onboard/ros_workspace/install/warehouse_robot_bringup/share/warehouse_robot_bringup/environment/path.sh
+/home/sv/ros/software/onboard/ros_workspace/install/warehouse_robot_bringup/share/warehouse_robot_bringup/environment/path.dsv
+/home/sv/ros/software/onboard/ros_workspace/install/warehouse_robot_bringup/share/warehouse_robot_bringup/local_setup.bash
+/home/sv/ros/software/onboard/ros_workspace/install/warehouse_robot_bringup/share/warehouse_robot_bringup/local_setup.sh
+/home/sv/ros/software/onboard/ros_workspace/install/warehouse_robot_bringup/share/warehouse_robot_bringup/local_setup.zsh
+/home/sv/ros/software/onboard/ros_workspace/install/warehouse_robot_bringup/share/warehouse_robot_bringup/local_setup.dsv
+/home/sv/ros/software/onboard/ros_workspace/install/warehouse_robot_bringup/share/warehouse_robot_bringup/package.dsv
+/home/sv/ros/software/onboard/ros_workspace/install/warehouse_robot_bringup/share/ament_index/resource_index/packages/warehouse_robot_bringup
+/home/sv/ros/software/onboard/ros_workspace/install/warehouse_robot_bringup/share/warehouse_robot_bringup/cmake/warehouse_robot_bringupConfig.cmake
+/home/sv/ros/software/onboard/ros_workspace/install/warehouse_robot_bringup/share/warehouse_robot_bringup/cmake/warehouse_robot_bringupConfig-version.cmake
+/home/sv/ros/software/onboard/ros_workspace/install/warehouse_robot_bringup/share/warehouse_robot_bringup/package.xml

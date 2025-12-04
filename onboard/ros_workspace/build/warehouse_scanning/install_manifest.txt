@@ -1,0 +1,15 @@
+/home/sv/ros/software/onboard/ros_workspace/install/warehouse_scanning/share/ament_index/resource_index/package_run_dependencies/warehouse_scanning
+/home/sv/ros/software/onboard/ros_workspace/install/warehouse_scanning/share/ament_index/resource_index/parent_prefix_path/warehouse_scanning
+/home/sv/ros/software/onboard/ros_workspace/install/warehouse_scanning/share/warehouse_scanning/environment/ament_prefix_path.sh
+/home/sv/ros/software/onboard/ros_workspace/install/warehouse_scanning/share/warehouse_scanning/environment/ament_prefix_path.dsv
+/home/sv/ros/software/onboard/ros_workspace/install/warehouse_scanning/share/warehouse_scanning/environment/path.sh
+/home/sv/ros/software/onboard/ros_workspace/install/warehouse_scanning/share/warehouse_scanning/environment/path.dsv
+/home/sv/ros/software/onboard/ros_workspace/install/warehouse_scanning/share/warehouse_scanning/local_setup.bash
+/home/sv/ros/software/onboard/ros_workspace/install/warehouse_scanning/share/warehouse_scanning/local_setup.sh
+/home/sv/ros/software/onboard/ros_workspace/install/warehouse_scanning/share/warehouse_scanning/local_setup.zsh
+/home/sv/ros/software/onboard/ros_workspace/install/warehouse_scanning/share/warehouse_scanning/local_setup.dsv
+/home/sv/ros/software/onboard/ros_workspace/install/warehouse_scanning/share/warehouse_scanning/package.dsv
+/home/sv/ros/software/onboard/ros_workspace/install/warehouse_scanning/share/ament_index/resource_index/packages/warehouse_scanning
+/home/sv/ros/software/onboard/ros_workspace/install/warehouse_scanning/share/warehouse_scanning/cmake/warehouse_scanningConfig.cmake
+/home/sv/ros/software/onboard/ros_workspace/install/warehouse_scanning/share/warehouse_scanning/cmake/warehouse_scanningConfig-version.cmake
+/home/sv/ros/software/onboard/ros_workspace/install/warehouse_scanning/share/warehouse_scanning/package.xml

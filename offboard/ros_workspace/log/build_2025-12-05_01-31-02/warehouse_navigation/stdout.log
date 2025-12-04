@@ -1,0 +1,49 @@
+running egg_info
+creating ../../build/warehouse_navigation/warehouse_navigation.egg-info
+writing ../../build/warehouse_navigation/warehouse_navigation.egg-info/PKG-INFO
+writing dependency_links to ../../build/warehouse_navigation/warehouse_navigation.egg-info/dependency_links.txt
+writing entry points to ../../build/warehouse_navigation/warehouse_navigation.egg-info/entry_points.txt
+writing requirements to ../../build/warehouse_navigation/warehouse_navigation.egg-info/requires.txt
+writing top-level names to ../../build/warehouse_navigation/warehouse_navigation.egg-info/top_level.txt
+writing manifest file '../../build/warehouse_navigation/warehouse_navigation.egg-info/SOURCES.txt'
+reading manifest file '../../build/warehouse_navigation/warehouse_navigation.egg-info/SOURCES.txt'
+writing manifest file '../../build/warehouse_navigation/warehouse_navigation.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/sv/ros/software/offboard/ros_workspace/build/warehouse_navigation/build
+creating /home/sv/ros/software/offboard/ros_workspace/build/warehouse_navigation/build/lib
+creating /home/sv/ros/software/offboard/ros_workspace/build/warehouse_navigation/build/lib/warehouse_navigation
+copying warehouse_navigation/shelf_detector.py -> /home/sv/ros/software/offboard/ros_workspace/build/warehouse_navigation/build/lib/warehouse_navigation
+copying warehouse_navigation/navigate_to_shelf.py -> /home/sv/ros/software/offboard/ros_workspace/build/warehouse_navigation/build/lib/warehouse_navigation
+copying warehouse_navigation/frontier_exploration.py -> /home/sv/ros/software/offboard/ros_workspace/build/warehouse_navigation/build/lib/warehouse_navigation
+copying warehouse_navigation/__init__.py -> /home/sv/ros/software/offboard/ros_workspace/build/warehouse_navigation/build/lib/warehouse_navigation
+running install
+running install_lib
+creating /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/lib/python3.12/site-packages/warehouse_navigation
+copying /home/sv/ros/software/offboard/ros_workspace/build/warehouse_navigation/build/lib/warehouse_navigation/shelf_detector.py -> /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/lib/python3.12/site-packages/warehouse_navigation
+copying /home/sv/ros/software/offboard/ros_workspace/build/warehouse_navigation/build/lib/warehouse_navigation/navigate_to_shelf.py -> /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/lib/python3.12/site-packages/warehouse_navigation
+copying /home/sv/ros/software/offboard/ros_workspace/build/warehouse_navigation/build/lib/warehouse_navigation/frontier_exploration.py -> /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/lib/python3.12/site-packages/warehouse_navigation
+copying /home/sv/ros/software/offboard/ros_workspace/build/warehouse_navigation/build/lib/warehouse_navigation/__init__.py -> /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/lib/python3.12/site-packages/warehouse_navigation
+byte-compiling /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/lib/python3.12/site-packages/warehouse_navigation/shelf_detector.py to shelf_detector.cpython-312.pyc
+byte-compiling /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/lib/python3.12/site-packages/warehouse_navigation/navigate_to_shelf.py to navigate_to_shelf.cpython-312.pyc
+byte-compiling /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/lib/python3.12/site-packages/warehouse_navigation/frontier_exploration.py to frontier_exploration.cpython-312.pyc
+byte-compiling /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/lib/python3.12/site-packages/warehouse_navigation/__init__.py to __init__.cpython-312.pyc
+running install_data
+creating /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/share/ament_index
+creating /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/share/ament_index/resource_index
+creating /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/share/ament_index/resource_index/packages
+copying resource/warehouse_navigation -> /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/share/ament_index/resource_index/packages
+copying package.xml -> /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/share/warehouse_navigation
+creating /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/share/warehouse_navigation/config
+copying config/nav2_params.yaml -> /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/share/warehouse_navigation/config
+copying config/ekf.yaml -> /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/share/warehouse_navigation/config
+copying config/default.rviz -> /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/share/warehouse_navigation/config
+creating /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/share/warehouse_navigation/launch
+copying launch/explore_shelf.launch.py -> /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/share/warehouse_navigation/launch
+running install_egg_info
+Copying ../../build/warehouse_navigation/warehouse_navigation.egg-info to /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/lib/python3.12/site-packages/warehouse_navigation-0.0.0-py3.12.egg-info
+running install_scripts
+Installing frontier_exploration.py script to /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/lib/warehouse_navigation
+Installing navigate_to_shelf.py script to /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/lib/warehouse_navigation
+Installing shelf_detector.py script to /home/sv/ros/software/offboard/ros_workspace/install/warehouse_navigation/lib/warehouse_navigation
+writing list of installed files to '/home/sv/ros/software/offboard/ros_workspace/build/warehouse_navigation/install.log'

@@ -1,0 +1,9 @@
+/home/sv/ros/software/onboard/ros_workspace/build/warehouse_robot_bringup/CMakeFiles/uninstall.dir
+/home/sv/ros/software/onboard/ros_workspace/build/warehouse_robot_bringup/CMakeFiles/warehouse_robot_bringup_uninstall.dir
+/home/sv/ros/software/onboard/ros_workspace/build/warehouse_robot_bringup/CMakeFiles/test.dir
+/home/sv/ros/software/onboard/ros_workspace/build/warehouse_robot_bringup/CMakeFiles/edit_cache.dir
+/home/sv/ros/software/onboard/ros_workspace/build/warehouse_robot_bringup/CMakeFiles/rebuild_cache.dir
+/home/sv/ros/software/onboard/ros_workspace/build/warehouse_robot_bringup/CMakeFiles/list_install_components.dir
+/home/sv/ros/software/onboard/ros_workspace/build/warehouse_robot_bringup/CMakeFiles/install.dir
+/home/sv/ros/software/onboard/ros_workspace/build/warehouse_robot_bringup/CMakeFiles/install/local.dir
+/home/sv/ros/software/onboard/ros_workspace/build/warehouse_robot_bringup/CMakeFiles/install/strip.dir

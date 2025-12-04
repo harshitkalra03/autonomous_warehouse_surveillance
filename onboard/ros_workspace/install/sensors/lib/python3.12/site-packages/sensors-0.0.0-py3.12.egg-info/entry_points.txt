@@ -1,0 +1,2 @@
+[console_scripts]
+bno055_node = sensors.bno055_node:main
