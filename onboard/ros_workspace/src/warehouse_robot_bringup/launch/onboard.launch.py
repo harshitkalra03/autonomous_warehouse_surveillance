@@ -133,6 +133,17 @@ def generate_launch_description():
         )
     )
 
+    rosbridge_websocket_launch = Node(
+        package='rosbridge_server',
+        executable='rosbridge_websocket',
+        name='rosbridge_websocket',
+        parameters=[{
+            'use_sim_time': False,
+            'delay_between_messages': 0
+        }],
+        output='screen'
+    )
+
     return LaunchDescription([
         robot_state_publisher_node,
         static_lidar_tf,
@@ -141,6 +152,7 @@ def generate_launch_description():
         delayed_mecanum_drive_spawner,
         relay_cmd_vel_node,
         sensors_launch,
-        stepper_motor_node
+        stepper_motor_node,
+        rosbridge_websocket_launch,
     ])
     
