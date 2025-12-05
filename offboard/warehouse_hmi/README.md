@@ -11,6 +11,7 @@ Features
 - QR code scanner with scan history and detail view (saved locally or to configured backend).
 - Simple teleoperation and goal sending via Nav2-compatible action client from the UI.
 
+
 Quick start (development)
 1. Install dependencies:
    npm install
