@@ -14,11 +14,10 @@ This document describes how to prepare an offboard (companion) computer running 
 Before configuring the offboard workstation, ensure the onboard/computer that interfaces directly with the vehicle is configured. Minimum tasks:
 - Install supported OS (Ubuntu 24.04) on the onboard machine (or ensure compatibility).
 - Install ROS 2 Jazzy on the onboard machine if it will run ROS nodes (follow same ROS install link above).
-- Install MAVLink / MAVROS on the onboard device if communicating with autopilot:
-  - Example package: ros-jazzy-mavros (or appropriate transport for your autopilot).
+- Install ROS on the onboard device if communicating with autopilot:
 - Configure serial/USB permissions and udev rules so autopilot serial devices are accessible to ROS processes.
 - Configure networking (Wi‑Fi / Ethernet / ad-hoc / ROS2 DDS discovery settings) so offboard and onboard machines can communicate.
-- Verify basic comms: ping between machines, ros2 topic list (if ROS is running), and mavlink link health.
+- Verify basic comms: ping between machines, ros2 topic list (if ROS is running),.
 
 Refer README.md in odboard directory for above setup.
 
@@ -44,7 +43,6 @@ sudo apt install -y ros-jazzy-desktop
 sudo apt-get install -y libboost-all-dev
 sudo apt install -y ros-jazzy-tf-transformations
 sudo apt install -y ros-jazzy-navigation2 ros-jazzy-nav2-bringup
-sudo apt install -y ros-jazzy-mavros || true
 ```
 
 3. Environment and workspace build
@@ -62,7 +60,7 @@ source install/setup.bash
 - GUI required: use the Desktop install so you have RViz for visualization.
 - If using ROS 2 DDS across machines, ensure multicast / discovery ports are allowed by firewall or configure DDS security/ROS_DOMAIN_ID appropriately.
 - For serial connections, confirm user is in dialout group if needed: sudo usermod -aG dialout $USER
-- If you rely on mavlink/mavros, verify firmware and autopilot settings for companion-computer telemetry rates and connection baud rates.
+
 
 ## 4) Troubleshooting checklist
 - Can you ping the onboard IP from offboard?
