@@ -1,73 +1,55 @@
-# Welcome to your Lovable project
+# Warehouse HMI — Offboard Interface
 
-## Project info
+Overview
+- This web application is the offboard Human‑Machine Interface (HMI) for the autonomous warehouse robot.
+- It displays live ROS2 topics (map, robot pose, sensor feeds) and an RViz-like map view delivered via rosbridge.
+- QR codes scanned through the website are saved by the HMI with details (decoded value, timestamp, and optional metadata). By default scans are persisted in the browser; you can configure a backend endpoint to persist them server‑side.
 
-**URL**: https://lovable.dev/projects/270abcd9-dc65-4bc2-a039-b15cfc09e0f2
+Features
+- Live map and robot pose visualization (map published by SLAM /slam_toolbox).
+- Topic viewer for common robot topics (/map, /tf, /odom, /scan, /detected_shelf_info, /navigate_to_pose, /cmd_vel).
+- QR code scanner with scan history and detail view (saved locally or to configured backend).
+- Simple teleoperation and goal sending via Nav2-compatible action client from the UI.
 
-## How can I edit this code?
+Quick start (development)
+1. Install dependencies:
+   npm install
+2. Start the dev server:
+   npm run dev
+3. Open the URL shown by the dev server (usually http://localhost:5173).
 
-There are several ways of editing your application.
+Build for production
+- Build the static assets:
+  npm run build
+- Serve the contents of the `dist` folder using your preferred static file server.
 
-**Use Lovable**
+Configuring ROS connection
+- The HMI connects to ROS through a rosbridge websocket. Configure the websocket URL in:
+  offboard/warehouse_hmi/src/hooks/useROS.ts
+- You can also use an environment variable REACT_APP_ROSBRIDGE_WS_URL to set the websocket URL at runtime (if the project uses env support). Default is:
+  ws://localhost:9090
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/270abcd9-dc65-4bc2-a039-b15cfc09e0f2) and start prompting.
+Where QR scans are stored
+- Default: scans are saved in the browser (localStorage) and are visible in the UI scan history.
+- Optional backend: set a backend endpoint (e.g. via REACT_APP_QR_SAVE_ENDPOINT) to persist scans to a server or database. The saved record includes decoded data, timestamp, and any attached metadata.
 
-Changes made via Lovable will be committed automatically to this repo.
+ROS topics and actions commonly used by this HMI
+- Topics: /map, /tf, /odom, /scan, /detected_shelf_info, /frontier_goals, /cmd_vel
+- Actions: /navigate_to_pose (Nav2 NavigateToPose action)
+- The HMI subscribes/publishes through rosbridge; make sure rosbridge is running on the robot or accessible from this host.
 
-**Use your preferred IDE**
+Troubleshooting
+- HMI cannot connect: confirm rosbridge websocket is reachable from your browser and CORS/network rules allow the connection.
+- No map shown: verify SLAM is running and publishing /map and TF.
+- QR scans not persisting: check browser localStorage or backend endpoint configuration and network logs in browser devtools.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Editing & contribution
+- Edit code locally with your preferred IDE, commit and push. The project is built with Vite + React + TypeScript + Tailwind.
+- Dev commands: npm install, npm run dev, npm run build.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/270abcd9-dc65-4bc2-a039-b15cfc09e0f2) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Notes
+- This HMI is intended to run on the offboard laptop and connect to the onboard rosbridge/websocket or local ROS instance.
+- For exact integration points, see:
+  - offboard/warehouse_hmi/src/hooks/useROS.ts (ROS connection)
+  - offboard/warehouse_hmi/src/components/MapViewer.tsx (map rendering)
+  - offboard/warehouse_hmi/src/pages/Index.tsx (main dashboard and topic list)

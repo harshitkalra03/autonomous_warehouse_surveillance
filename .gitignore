@@ -8,3 +8,8 @@ onboard/ros_workspace/build/
 onboard/ros_workspace/log/
 onboard/ros_workspace/install/
 onboard/ros_workspace/qr_data.db
+
+
+build
+install
+log
