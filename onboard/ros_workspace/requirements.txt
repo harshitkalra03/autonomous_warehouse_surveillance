@@ -1,0 +1,8 @@
+opencv-python
+ultralytics
+pyzbar
+tabulate
+numpy
+pyserial
+torch
+torchvision
