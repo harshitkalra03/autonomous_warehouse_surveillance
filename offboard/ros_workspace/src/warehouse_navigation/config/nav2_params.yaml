@@ -52,15 +52,6 @@ bt_navigator:
       plugin: "nav2_bt_navigator::NavigateToPoseNavigator"
     navigate_through_poses:
       plugin: "nav2_bt_navigator::NavigateThroughPosesNavigator"
-    # 'default_nav_through_poses_bt_xml' and 'default_nav_to_pose_bt_xml' are use defaults:
-    # nav2_bt_navigator/navigate_to_pose_w_replanning_and_recovery.xml
-    # nav2_bt_navigator/navigate_through_poses_w_replanning_and_recovery.xml
-    # They can be set here or via a RewrittenYaml remap from a parent launch file to Nav2.
-
-    # plugin_lib_names is used to add custom BT plugins to the executor (vector of strings).
-    # Built-in plugins are added automatically
-    # plugin_lib_names: []
-
     error_code_names:
       - compute_path_error_code
       - follow_path_error_code
@@ -79,20 +70,18 @@ controller_server:
     controller_plugins: ["FollowPath"]
     use_realtime_priority: false
 
-    # Progress checker parameters
     progress_checker:
       plugin: "nav2_controller::SimpleProgressChecker"
       required_movement_radius: 0.5
       movement_time_allowance: 10.0
     
-    # Goal checker parameters
     general_goal_checker:
       stateful: True
       plugin: "nav2_controller::SimpleGoalChecker"
       xy_goal_tolerance: 0.25
       yaw_goal_tolerance: 0.25
     
-    # MPPI Controller parameters
+    # MPPI Controller - Decoupled Holonomic Motion Configuration
     FollowPath:
       plugin: "nav2_mppi_controller::MPPIController"
       time_steps: 56
@@ -103,13 +92,18 @@ controller_server:
       ay_max: 3.0
       ay_min: -3.0
       az_max: 3.5
-      vx_std: 0.2
-      vy_std: 0.2
-      wz_std: 0.4
+      
+      # Standard deviations - HIGH vy_std favors holonomic motion
+      vx_std: 0.2      # Forward velocity variation
+      vy_std: 0.4      # HIGH - encourages sideways motion exploration
+      wz_std: 0.3      # Moderate rotational variation
+      
+      # Velocity limits - full holonomic capability
       vx_max: 0.5
-      vx_min: -0.35  # Ensure this is negative to allow reversing physically
-      vy_max: 0.5
+      vx_min: -0.35    # Allow some reverse, but PreferForwardCritic will discourage it
+      vy_max: 0.5      # Full sideways speed
       wz_max: 1.9
+      
       iteration_count: 1
       prune_distance: 1.7
       transform_tolerance: 0.1
@@ -118,15 +112,19 @@ controller_server:
       motion_model: "Omni"
       visualize: true
       regenerate_noises: true
+      
       TrajectoryVisualizer:
         trajectory_step: 5
         time_step: 3
+      
       AckermannConstraints:
         min_turning_r: 0.2
+      
+      # Critics configuration for decoupled holonomic motion
       critics: [
         "ConstraintCritic", "CostCritic", "GoalCritic",
         "GoalAngleCritic", "PathAlignCritic", "PathFollowCritic",
-        "PathAngleCritic", "PreferForwardCritic"]
+        "PathAngleCritic", "PreferForwardCritic", "TwirlingCritic"]
       
       ConstraintCritic:
         enabled: true
@@ -145,14 +143,11 @@ controller_server:
         cost_weight: 3.0
         threshold_to_consider: 0.5
       
-      # --- MAJOR CHANGE 1: Allow Reversing ---
-      # Reduced weight from 5.0 to 0.5. 
-      # High weight forces the robot to turn around to face forward.
-      # Low weight allows it to drive backward if the path is shorter/easier.
+      # Discourage backward motion
       PreferForwardCritic:
         enabled: true
         cost_power: 1
-        cost_weight: 0.5 
+        cost_weight: 5.0         # Strong penalty against reversing
         threshold_to_consider: 0.5
       
       CostCritic:
@@ -166,14 +161,11 @@ controller_server:
         near_goal_distance: 1.0
         trajectory_point_step: 2
       
-      # --- MAJOR CHANGE 2: Relax Alignment ---
-      # Reduced weight from 14.0 to 5.0.
-      # High weight punishes the robot for not pointing its nose along the path.
-      # When backing up, your nose points opposite the path, causing a panic turn.
+      # Moderate alignment - allows holonomic freedom
       PathAlignCritic:
         enabled: true
         cost_power: 1
-        cost_weight: 5.0 
+        cost_weight: 5.0         # Moderate - doesn't force strict nose-to-path alignment
         max_path_occupancy_ratio: 0.05
         trajectory_point_step: 4
         threshold_to_consider: 0.5
@@ -187,16 +179,22 @@ controller_server:
         offset_from_furthest: 5
         threshold_to_consider: 1.4
       
-      # --- MINOR CHANGE: Relax Path Angle ---
-      # Reduced from 2.0 to 1.0 to further reduce turning tendency.
+      # Low weight - allows flexible orientation while moving
       PathAngleCritic:
         enabled: true
         cost_power: 1
-        cost_weight: 1.0
+        cost_weight: 1.0         # Low weight - permits holonomic motion
         offset_from_furthest: 4
         threshold_to_consider: 0.5
         max_angle_to_furthest: 1.0
         mode: 0
+      
+      # KEY CRITIC: Decouples rotation from translation
+      TwirlingCritic:
+        enabled: true
+        cost_power: 1
+        cost_weight: 15.0        # HIGH - strongly penalizes simultaneous rotate+translate
+        threshold_to_consider: 0.5
 
 local_costmap:
   local_costmap:
@@ -274,13 +272,6 @@ global_costmap:
         inflation_radius: 0.7
       always_send_full_costmap: True
 
-# The yaml_filename does not need to be specified since it going to be set by defaults in launch.
-# If you'd rather set it in the yaml, remove the default "map" value in the tb3_simulation_launch.py
-# file & provide full path to map below. If CLI map configuration or launch default is provided, that will be used.
-# map_server:
-#   ros__parameters:
-#     yaml_filename: ""
-
 map_saver:
   ros__parameters:
     save_map_timeout: 5.0
@@ -346,29 +337,6 @@ waypoint_follower:
       enabled: True
       waypoint_pause_duration: 200
 
-# route_server:
-#   ros__parameters:
-#     # The graph_filepath does not need to be specified since it going to be set by defaults in launch.
-#     # If you'd rather set it in the yaml, remove the default "graph" value in the launch file(s).
-#     # file & provide full path to map below. If graph config or launch default is provided, it is used
-#     # graph_filepath: $(find-pkg-share nav2_route)/graphs/aws_graph.geojson
-#     boundary_radius_to_achieve_node: 1.0
-#     radius_to_achieve_node: 2.0
-#     smooth_corners: true
-#     operations: ["AdjustSpeedLimit", "ReroutingService", "CollisionMonitor"]
-#     ReroutingService:
-#       plugin: "nav2_route::ReroutingService"
-#     AdjustSpeedLimit:
-#       plugin: "nav2_route::AdjustSpeedLimit"
-#     CollisionMonitor:
-#       plugin: "nav2_route::CollisionMonitor"
-#       max_collision_dist: 3.0
-#     edge_cost_functions: ["DistanceScorer", "CostmapScorer"]
-#     DistanceScorer:
-#       plugin: "nav2_route::DistanceScorer"
-#     CostmapScorer:
-#       plugin: "nav2_route::CostmapScorer"
-
 velocity_smoother:
   ros__parameters:
     smoothing_frequency: 20.0
@@ -394,8 +362,6 @@ collision_monitor:
     source_timeout: 1.0
     base_shift_correction: True
     stop_pub_timeout: 2.0
-    # Polygons represent zone around the robot for "stop", "slowdown" and "limit" action types,
-    # and robot footprint for "approach" action type.
     polygons: ["FootprintApproach"]
     FootprintApproach:
       type: "polygon"
@@ -428,15 +394,14 @@ docking_server:
     dock_backwards: false
     dock_prestaging_tolerance: 0.5
 
-    # Types of docks
     dock_plugins: ['simple_charging_dock']
     simple_charging_dock:
       plugin: 'opennav_docking::SimpleChargingDock'
       docking_threshold: 0.05
       staging_x_offset: -0.7
       use_external_detection_pose: true
-      use_battery_status: false # true
-      use_stall_detection: false # true
+      use_battery_status: false
+      use_stall_detection: false
 
       external_detection_timeout: 1.0
       external_detection_translation_x: -0.18
@@ -445,14 +410,6 @@ docking_server:
       external_detection_rotation_pitch: -1.57
       external_detection_rotation_yaw: 0.0
       filter_coef: 0.1
-
-    # Dock instances
-    # The following example illustrates configuring dock instances.
-    # docks: ['home_dock']  # Input your docks here
-    # home_dock:
-    #   type: 'simple_charging_dock'
-    #   frame: map
-    #   pose: [0.0, 0.0, 0.0]
 
     controller:
       k_phi: 3.0
@@ -472,7 +429,7 @@ loopback_simulator:
     base_frame_id: "base_footprint"
     odom_frame_id: "odom"
     map_frame_id: "map"
-    scan_frame_id: "base_scan"  # tb4_loopback_simulator.launch.py remaps to 'rplidar_link'
+    scan_frame_id: "base_scan"
     update_duration: 0.02
     scan_range_min: 0.05
     scan_range_max: 30.0

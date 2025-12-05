@@ -49,7 +49,7 @@ def generate_launch_description():
         executable='static_transform_publisher',
         name='gpu_lidar_tf_publisher',
         arguments=[
-            '0', '0', '0', '0', '0', '0',
+            '0', '0', '0', '1.5708', '0', '0',  # 1.5708 radians = 90 degrees yaw
             'base_link', 'my_robot/base_link/gpu_lidar'
         ],
         parameters=[{'use_sim_time': False}],
