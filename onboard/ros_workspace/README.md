@@ -243,13 +243,13 @@ sudo chmod 777 /dev/video*
 sudo chmod 777 /dev/ttyUSB0
 
 # Make permanent by creating udev rule
-sudo nano /etc/udev/rules.d/99-serial.rules
+sudo nano /etc/udev/rules.d/99-usb-ports.rules 
 ```
 
-Add this line to the file:
+Add these lines to the file:
 ```
-KERNEL=="ttyUSB[0-9]*", MODE="0666"
-KERNEL=="ttyACM[0-9]*", MODE="0666"
+SUBSYSTEM=="tty", KERNELS=="4-1", SYMLINK+="esp32", MODE="666"
+SUBSYSTEM=="tty", KERNELS=="2-1", SYMLINK+="lidar", MODE="666"
 ```
 
 Then reload rules:
@@ -257,10 +257,10 @@ Then reload rules:
 sudo udevadm control --reload-rules
 sudo udevadm trigger
 
-# Replug your serial device once for the rule to take effect
+# Replug your serial devices once for the rules to take effect
 # After this, permissions will be automatic on every future plug-in
+# Your devices will now be accessible as /dev/esp32 and /dev/lidar
 ```
-
 ### 7. Build ROS2 Workspace
 
 ```bash
@@ -531,4 +531,5 @@ ros2 run warehouse_scanning qr_detection
 source ros_env/bin/activate
 python3 src/warehouse_scanning/warehouse_scanning/database_viewer.py
 ```
+
 
