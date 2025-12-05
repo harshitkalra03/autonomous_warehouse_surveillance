@@ -1,6 +1,6 @@
 ydlidar_ros2_driver_node:
   ros__parameters:
-    port: /dev/ttyUSB0
+    port: /dev/lidar
     frame_id: my_robot/base_link/gpu_lidar
     ignore_array: ""
     baudrate: 115200

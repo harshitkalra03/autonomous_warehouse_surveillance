@@ -8,7 +8,7 @@ class StepperMotorNode : public rclcpp::Node {
 public:
     StepperMotorNode() : Node("stepper_motor_node") {
         // Declare parameters
-        this->declare_parameter<std::string>("serial_port", "/dev/ttyUSB0");
+        this->declare_parameter<std::string>("serial_port", "/dev/esp32");
         this->declare_parameter<int>("baudrate", 115200);
 
         // Get parameters
