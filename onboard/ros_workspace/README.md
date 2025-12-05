@@ -144,7 +144,7 @@ source ~/.bashrc
 ```bash
 # Boost libraries for serial communication
 sudo apt-get install libboost-all-dev
-gi
+
 # Build tools
 sudo apt install cmake pkg-config swig
 
@@ -203,13 +203,35 @@ pip install -r requirements.txt
 
 #### Add Virtual Environment Activation to Workspace Setup
 ```bash
-echo "source ~/autonomous_warehouse_surveillance/onboard/ros_workspace/ros_env/bin/activate" >> ~/.bashrc
+echo "source $(pwd)/ros_env/bin/activate" >> ~/.bashrc
 source ~/.bashrc
 ```
+## ⚠️ CRITICAL: PORT CONFIGURATION REQUIRED
+
+**BEFORE RUNNING THE SYSTEM**, you must configure the correct serial ports. The default configurations won't work with your specific hardware.
+
+### Files to Update:
+1. `src/ydlidar_ros2_driver/params/ydlidar.yaml`
+2. `src/stepper_motor/src/stepper_motor_node.cpp`
+3. `src/warehouse_robot_description/urdf/mobile_base.ros2_control.xacro`
+
+### Quick Steps:
+1. **Unplug all USB devices**
+2. **Plug in ONE device at a time**
+3. **Check port:** `ls /dev/ttyUSB* /dev/ttyACM*`
+4. **Note which port appears**
+5. **Repeat for each device**
+6. **Update the 3 files above with your specific ports**
+
+**Default examples may all show `/dev/ttyUSB0` - change each to match your actual device ports.**
+
+---
+
+## Usage
 
 ### 6. Camera and Serial Device Permissions
 
-#### Set Camera Permissions
+#### Set Camera Permissions   
 ```bash
 sudo usermod -a -G video $USER
 sudo chmod 777 /dev/video*
@@ -247,7 +269,7 @@ colcon build
 source install/setup.bash
 
 # Add to bashrc for automatic sourcing
-echo "source ~/autonomous_warehouse_surveillance/onboard/ros_workspace/install/setup.bash" >> ~/.bashrc
+echo "source $(pwd)/install/setup.bash" >> ~/.bashrc
 ```
 
 ### 8. Database Setup
@@ -288,8 +310,7 @@ ros2 launch warehouse_robot_bringup onboard.launch.py
 #### 2. Start QR Scanning Node
 ```bash
 # In a new terminal
-source ros_env/bin/activate
-source install/setup.bash
+source ~/.bashrc
 ros2 launch warehouse_scanning qr_detection.launch.py
 ```
 
@@ -298,8 +319,7 @@ ros2 launch warehouse_scanning qr_detection.launch.py
 
 ```bash
 # Activate environment
-source ~/autonomous_warehouse_surveillance/onboard/ros_workspace/ros_env/bin/activate
-source ~/autonomous_warehouse_surveillance/onboard/ros_workspace/install/setup.bash
+source ~/.bashrc
 
 # Launch all sensors
 ros2 launch warehouse_robot_bringup onboard.launch.py
@@ -511,3 +531,4 @@ ros2 run warehouse_scanning qr_detection
 source ros_env/bin/activate
 python3 src/warehouse_scanning/warehouse_scanning/database_viewer.py
 ```
+
