@@ -6,3 +6,6 @@ numpy
 pyserial
 torch
 torchvision
+catkin_pkg
+empy
+lark
