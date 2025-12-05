@@ -16,10 +16,5 @@ def generate_launch_description():
             emulate_tty=True
         ),
         
-        # Launch the database viewer in a separate terminal
-        ExecuteProcess(
-            cmd=['gnome-terminal', '--', 'ros2', 'run', 'warehouse_scanning', 'database_viewer'],
-            output='screen',
-            shell=False
-        )
+
     ])

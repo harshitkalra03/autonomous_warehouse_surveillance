@@ -23,8 +23,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'image_viewer = warehouse_scanning.qr_detection:main',
-            'database_viewer = warehouse_scanning.qr_detection.database_viewer:main',
+            'qr_detection = warehouse_scanning.qr_detection:main',
         ],
     },
 )
