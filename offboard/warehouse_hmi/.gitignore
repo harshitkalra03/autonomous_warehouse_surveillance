@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+rosbridge_ws/build 
+rosbridge_ws/install
+rosbridge_ws/log
