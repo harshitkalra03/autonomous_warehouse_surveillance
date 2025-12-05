@@ -58,6 +58,10 @@ source install/setup.bash
 ros2 launch warehouse_robot_bringup offboard.launch.py
 
 ```
+- In another terminal configure and activate the slam_toolbox
+```bash
+ros2 lifecycle set /slam_toolbox configure && ros2 lifecycle set /slam_toolbox activate 
+```
 
 
 ## 4) Troubleshooting checklist
