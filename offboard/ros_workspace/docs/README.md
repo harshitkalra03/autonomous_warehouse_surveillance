@@ -49,17 +49,15 @@ sudo apt install -y ros-jazzy-navigation2 ros-jazzy-nav2-bringup
 ```bash
 echo "source /opt/ros/jazzy/setup.bash" >> ~/.bashrc
 source ~/.bashrc
-
-# from your workspace root
-rosdep install --from-paths src --ignore-src -r -y
+cd autonomous_warehouse_surveillance/offboard/ros_workspace
 colcon build --symlink-install
 source install/setup.bash
 ```
+4. Launch
+```bash
+ros2 launch warehouse_robot_bringup offboard.launch.py
 
-## 3) Notes / Tips
-- GUI required: use the Desktop install so you have RViz for visualization.
-- If using ROS 2 DDS across machines, ensure multicast / discovery ports are allowed by firewall or configure DDS security/ROS_DOMAIN_ID appropriately.
-- For serial connections, confirm user is in dialout group if needed: sudo usermod -aG dialout $USER
+```
 
 
 ## 4) Troubleshooting checklist
