@@ -124,14 +124,17 @@ const Index = () => {
             </DataPanel>
 
             <BatteryPanel data={topicData['/battery_state']} connected={connected} />
-
-            <QRImagePanel data={undefined} connected={connected} />
           </div>
 
           {/* Bottom Row */}
           <VelocityPanel data={topicData['/cmd_vel']} connected={connected} />
           <SensorPanel data={topicData} connected={connected} />
           <TopicMonitor topics={topicData} connected={connected} />
+        </div>
+
+        {/* QR Image Captures Table - Full Width */}
+        <div className="mt-6">
+          <QRImagePanel data={undefined} connected={connected} />
         </div>
 
         {/* Footer Stats */}

@@ -1,6 +1,14 @@
 import { QrCode, Clock } from 'lucide-react';
 import { DataPanel } from './DataPanel';
 import { cn } from '@/lib/utils';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 
 interface QRImageData {
   timestamp: string;
@@ -47,7 +55,7 @@ export const QRImagePanel = ({ data, connected }: QRImagePanelProps) => {
       icon={<QrCode className="w-4 h-4" />}
       status={connected ? 'active' : 'inactive'}
     >
-      <div className="space-y-3 max-h-[500px] overflow-y-auto scrollbar-techy">
+      <div className="max-h-[500px] overflow-y-auto scrollbar-techy">
         {qrImages.length === 0 ? (
           <div className="text-center py-8 text-muted-foreground text-sm">
             <QrCode className="w-8 h-8 mx-auto mb-2 opacity-50" />
@@ -55,56 +63,54 @@ export const QRImagePanel = ({ data, connected }: QRImagePanelProps) => {
             <p className="text-xs mt-1">QR codes will appear here when captured</p>
           </div>
         ) : (
-          qrImages.map((qr, index) => (
-            <div
-              key={index}
-              className="border border-border/30 rounded bg-muted/30 p-3 hover:bg-muted/50 transition-colors"
-            >
-              {/* Header with timestamp */}
-              <div className="flex items-center gap-2 mb-3 pb-2 border-b border-border/30">
-                <Clock className="w-3 h-3 text-muted-foreground" />
-                <span className="text-xs font-mono text-muted-foreground">
-                  {qr.timestamp}
-                </span>
-              </div>
-
-              {/* QR Data Grid */}
-              <div className="grid grid-cols-2 gap-3">
-                <div className="space-y-1">
-                  <span className="text-xs uppercase tracking-wider text-muted-foreground">
-                    QR String
-                  </span>
-                  <div className="text-sm font-mono text-foreground break-all">
+          <Table>
+            <TableHeader>
+              <TableRow className="border-border/50 bg-muted/20 hover:bg-muted/30">
+                <TableHead className="font-display uppercase tracking-wider text-xs text-muted-foreground">
+                  <div className="flex items-center gap-2">
+                    <Clock className="w-3 h-3" />
+                    Time Stamp
+                  </div>
+                </TableHead>
+                <TableHead className="font-display uppercase tracking-wider text-xs text-muted-foreground">
+                  QR String
+                </TableHead>
+                <TableHead className="font-display uppercase tracking-wider text-xs text-muted-foreground">
+                  Rack ID
+                </TableHead>
+                <TableHead className="font-display uppercase tracking-wider text-xs text-muted-foreground">
+                  Shelf ID
+                </TableHead>
+                <TableHead className="font-display uppercase tracking-wider text-xs text-muted-foreground">
+                  Item Code
+                </TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {qrImages.map((qr, index) => (
+                <TableRow
+                  key={index}
+                  className="border-border/30 hover:bg-muted/30 transition-colors"
+                >
+                  <TableCell className="font-mono text-sm text-muted-foreground">
+                    {qr.timestamp}
+                  </TableCell>
+                  <TableCell className="font-mono text-sm text-foreground break-all">
                     {qr.qrString}
-                  </div>
-                </div>
-                <div className="space-y-1">
-                  <span className="text-xs uppercase tracking-wider text-muted-foreground">
-                    Rack ID
-                  </span>
-                  <div className="text-sm font-mono font-semibold text-primary">
+                  </TableCell>
+                  <TableCell className="font-mono text-sm font-semibold text-primary">
                     {qr.rackId}
-                  </div>
-                </div>
-                <div className="space-y-1">
-                  <span className="text-xs uppercase tracking-wider text-muted-foreground">
-                    Shelf ID
-                  </span>
-                  <div className="text-sm font-mono font-semibold text-foreground">
+                  </TableCell>
+                  <TableCell className="font-mono text-sm font-semibold text-foreground">
                     {qr.shelfId}
-                  </div>
-                </div>
-                <div className="space-y-1">
-                  <span className="text-xs uppercase tracking-wider text-muted-foreground">
-                    Item Code
-                  </span>
-                  <div className="text-sm font-mono font-semibold text-foreground">
+                  </TableCell>
+                  <TableCell className="font-mono text-sm font-semibold text-foreground">
                     {qr.itemCode}
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
         )}
       </div>
     </DataPanel>
