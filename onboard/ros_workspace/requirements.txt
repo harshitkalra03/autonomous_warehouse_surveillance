@@ -9,3 +9,4 @@ torchvision
 catkin_pkg
 empy
 lark
+libzbar0

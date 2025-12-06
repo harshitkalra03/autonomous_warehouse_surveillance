@@ -14,15 +14,15 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
-        Node(
-            package='v4l2_camera',
-            executable='v4l2_camera_node',
-            name='logitech_camera',
-            output='screen',
-            parameters=[
-                {'video_device': '/dev/video0'}
-            ]
-        ),
+        # Node(
+        #     package='v4l2_camera',
+        #     executable='v4l2_camera_node',
+        #     name='logitech_camera',
+        #     output='screen',
+        #     parameters=[
+        #         {'video_device': '/dev/video0'}
+        #     ]
+        # ),
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(lidar_launch_path)
         ),

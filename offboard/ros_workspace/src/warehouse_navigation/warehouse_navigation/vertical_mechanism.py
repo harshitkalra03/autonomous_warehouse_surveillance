@@ -2,6 +2,7 @@
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
+import re
 
 class VerticalMechanism(Node):
     def __init__(self):
@@ -21,11 +22,13 @@ class VerticalMechanism(Node):
         self.current_rack_id = 1
 
     def parse_qr_string(self, qr_str):
-        try:
-            parts = qr_str.split("_")
-            return parts[0], parts[1], parts[2]
-        except:
-            return None, None, None
+        pattern = r'R(\d+)_S(\d+)_ITM(\d+)'  # pattern to match R#, S#, ITM#
+        match = re.match(pattern, s)
+        if match:
+            rack_id, shelf_id, item_no = map(int, match.groups())
+            return rack_id, shelf_id, item_no
+        else:
+            raise ValueError("String format does not match expected pattern")
     
     def qr_data_callback(self, msg):
         qr_string = msg.data
