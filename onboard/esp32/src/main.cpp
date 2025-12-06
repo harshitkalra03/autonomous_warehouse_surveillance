@@ -108,10 +108,12 @@ void runCommand() {
     break;
   case STEPPER_STEP_POSITIVE:
     stepMotor(arg1, true);
+    setMotorSpeeds(0, 0, 0, 0);
     Serial.println("OK");
     break;
   case STEPPER_STEP_NEGATIVE:
     stepMotor(arg1, false);
+    setMotorSpeeds(0, 0, 0, 0);
     Serial.println("OK");
     break;
 #endif

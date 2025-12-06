@@ -1,7 +1,7 @@
 stepper_motor_node:
   ros__parameters:
     # Serial port configuration
-    serial_port: "/dev/ttyUSB0"
+    serial_port: "/dev/esp32"
     baudrate: 115200
     # Motor specifications
     step_angle: 1.8
