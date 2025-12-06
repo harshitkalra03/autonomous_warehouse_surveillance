@@ -15,6 +15,8 @@ onboard/esp32/lib/
 onboard/esp32/test/
 onboard/esp32/.gitignore/
 
+onboard/ros_workspace/ros_env/
+
 
 build
 install

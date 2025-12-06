@@ -146,7 +146,7 @@ def generate_launch_description():
         name='rosbridge_websocket',
         parameters=[{
             'use_sim_time': False,
-            'delay_between_messages': 0
+            'delay_between_messages': 0.0
         }],
         output='screen'
     )
