@@ -4,6 +4,7 @@ from rclpy.node import Node
 import cv2
 import numpy as np
 from pyzbar.pyzbar import decode
+from PIL import Image
 import sqlite3
 from datetime import datetime
 import time
@@ -42,8 +43,8 @@ class QRViewer(Node):
 
         self.prev_time = time.time()
         self.fps = 0.0
-        cv2.namedWindow("QR Detection", cv2.WINDOW_NORMAL)
 
+        # --- ROS PUBLISHER ---
         self.qr_data_publisher = self.create_publisher(String, '/qr_data', 50)
 
     def parse_qr_string(self, qr_str):
@@ -76,35 +77,24 @@ class QRViewer(Node):
             self.get_logger().warn("Camera frame not received.")
             return
 
-        # QR detection only
-        decoded_objects = decode(cv_image)
+        # Convert OpenCV BGR image to PIL RGB for pyzbar
+        rgb_image = cv2.cvtColor(cv_image, cv2.COLOR_BGR2RGB)
+        pil_image = Image.fromarray(rgb_image)
+
+        # QR detection
+        decoded_objects = decode(pil_image)
+
         for obj in decoded_objects:
             qr_data = obj.data.decode()
             self.get_logger().info(f"QR FOUND: {qr_data}")
             self.save_qr_to_db(qr_data)
-
-            points = obj.polygon
-            if len(points) == 4:
-                pts = np.array(points, np.int32)
-                cv2.polylines(cv_image, [pts], True, (255, 0, 255), 3)
-
-            rect = obj.rect
-            cv2.putText(cv_image, qr_data, (rect.left, rect.top - 10),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 0, 255), 2)
 
         # FPS calculation
         now = time.time()
         self.fps = 1.0 / (now - self.prev_time)
         self.prev_time = now
 
-        cv2.putText(cv_image, f"FPS: {self.fps:.1f}", (10, 30),
-                    cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 255, 0), 2)
-        cv2.putText(cv_image, f"QR Codes: {len(decoded_objects)}", (10, 70),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 255), 2)
-
-        cv2.imshow("QR Detection", cv_image)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            rclpy.shutdown()
+        self.get_logger().debug(f"FPS: {self.fps:.1f}, QR Codes: {len(decoded_objects)}")
 
 
 def main(args=None):
@@ -112,7 +102,7 @@ def main(args=None):
     node = QRViewer()
     rclpy.spin(node)
     node.destroy_node()
-    cv2.destroyAllWindows()
+    node.cap.release()
 
 
 if __name__ == "__main__":
