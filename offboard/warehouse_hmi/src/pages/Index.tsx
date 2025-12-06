@@ -31,6 +31,7 @@ const Index = () => {
       subscribe('/odom', 'nav_msgs/Odometry');
       subscribe('/battery_state', 'sensor_msgs/BatteryState');
       subscribe('/scan', 'sensor_msgs/LaserScan');
+      
     }
   }, [connected, subscribe]);
 
@@ -134,7 +135,7 @@ const Index = () => {
 
         {/* QR Image Captures Table - Full Width */}
         <div className="mt-6">
-          <QRImagePanel data={undefined} connected={connected} />
+          <QRImagePanel ros={ros} data={undefined} connected={connected} />
         </div>
 
         {/* Footer Stats */}

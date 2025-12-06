@@ -1,6 +1,8 @@
 import { QrCode, Clock } from 'lucide-react';
 import { DataPanel } from './DataPanel';
 import { cn } from '@/lib/utils';
+import { useEffect, useState } from 'react';
+import * as ROSLIB from 'roslib';
 import {
   Table,
   TableBody,
@@ -19,35 +21,55 @@ interface QRImageData {
 }
 
 interface QRImagePanelProps {
+  ros: ROSLIB.Ros | null;
   data?: QRImageData[];
   connected: boolean;
 }
 
-export const QRImagePanel = ({ data, connected }: QRImagePanelProps) => {
-  // Hardcoded sample data for now - timestamps are fixed capture times
-  const qrImages: QRImageData[] = data || [
-    {
-      timestamp: '12/15/2024, 2:45:30 PM',
-      qrString: 'QR-2024-001-ABC123',
-      rackId: 'RACK-001',
-      shelfId: 'SHELF-03',
-      itemCode: 'ITEM-456789',
-    },
-    {
-      timestamp: '12/15/2024, 2:40:15 PM',
-      qrString: 'QR-2024-002-XYZ789',
-      rackId: 'RACK-002',
-      shelfId: 'SHELF-01',
-      itemCode: 'ITEM-123456',
-    },
-    {
-      timestamp: '12/15/2024, 2:35:42 PM',
-      qrString: 'QR-2024-003-DEF456',
-      rackId: 'RACK-001',
-      shelfId: 'SHELF-05',
-      itemCode: 'ITEM-789012',
-    },
-  ];
+export const QRImagePanel = ({ ros, data, connected }: QRImagePanelProps) => {
+  const [qrImages, setQrImages] = useState<QRImageData[]>(data || []);
+
+  useEffect(() => {
+    if (!ros || !connected) return;
+
+    const qrTopic = new ROSLIB.Topic({
+      ros: ros,
+      name: '/qr_data',
+      messageType: 'std_msgs/String',
+    });
+
+    qrTopic.subscribe((message: any) => {
+      const qrString = message.data;
+
+      // Parse QR format: R03_S2_ITM430
+      // Expected: RACK_SHELF_ITEM
+      const parts = qrString.split('_');
+
+      let rackId = 'UNKNOWN';
+      let shelfId = 'UNKNOWN';
+      let itemCode = 'UNKNOWN';
+
+      if (parts.length >= 3) {
+        rackId = `RACK-${parts[0].replace('R', '')}`;
+        shelfId = `SHELF-${parts[1].replace('S', '')}`;
+        itemCode = `ITEM-${parts[2].replace('ITM', '')}`;
+      }
+
+      const newQR: QRImageData = {
+        timestamp: new Date().toLocaleString(),
+        qrString: qrString,
+        rackId: rackId,
+        shelfId: shelfId,
+        itemCode: itemCode,
+      };
+
+      setQrImages((prev) => [newQR, ...prev]);
+    });
+
+    return () => {
+      qrTopic.unsubscribe();
+    };
+  }, [ros, connected]);
 
   return (
     <DataPanel
