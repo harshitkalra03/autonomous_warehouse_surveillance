@@ -1,7 +1,7 @@
 import { QrCode, Clock, Trash2 } from 'lucide-react';
 import { DataPanel } from './DataPanel';
 import { cn } from '@/lib/utils';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import * as ROSLIB from 'roslib';
 
 interface QRImageData {
@@ -21,6 +21,7 @@ interface QRImagePanelProps {
 
 export const QRImagePanel = ({ ros, data, connected }: QRImagePanelProps) => {
   const [qrImages, setQrImages] = useState<QRImageData[]>([]);
+  const qrStringsRef = useRef<Set<string>>(new Set());
 
   useEffect(() => {
     if (!ros || !connected) return;
@@ -33,6 +34,14 @@ export const QRImagePanel = ({ ros, data, connected }: QRImagePanelProps) => {
 
     qrTopic.subscribe((message: any) => {
       const qrString = message.data;
+
+      // Check if QR string already exists
+      if (qrStringsRef.current.has(qrString)) {
+        return;
+      }
+
+      qrStringsRef.current.add(qrString);
+
       const parts = qrString.split('_');
 
       let rackId = 'UNKNOWN';
@@ -59,11 +68,18 @@ export const QRImagePanel = ({ ros, data, connected }: QRImagePanelProps) => {
 
     return () => {
       qrTopic.unsubscribe();
+      qrStringsRef.current.clear();
     };
   }, [ros, connected]);
 
   const handleDelete = (id: string) => {
-    setQrImages((prev) => prev.filter((qr) => qr.id !== id));
+    setQrImages((prev) => {
+      const deletedQr = prev.find((qr) => qr.id === id);
+      if (deletedQr) {
+        qrStringsRef.current.delete(deletedQr.qrString);
+      }
+      return prev.filter((qr) => qr.id !== id);
+    });
   };
 
   return (

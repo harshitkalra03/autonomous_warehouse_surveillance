@@ -30,7 +30,7 @@ class VerticalMechanism(Node):
     def qr_data_callback(self, msg):
         qr_string = msg.data
 
-        rack_id, shelf_id, item_code = self.parse_qr_string(qr_str)
+        rack_id, shelf_id, item_code = self.parse_qr_string(qr_string)
         
         if rack_id is None:
             return
