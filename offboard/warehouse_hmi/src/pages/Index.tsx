@@ -5,6 +5,7 @@ import { MapViewer } from '@/components/MapViewer';
 import { VelocityPanel } from '@/components/VelocityPanel';
 import { BatteryPanel } from '@/components/BatteryPanel';
 import { SensorPanel } from '@/components/SensorPanel';
+import { IMUPanel } from '@/components/IMUPanel';
 import { TopicMonitor } from '@/components/TopicMonitor';
 import { QRImagePanel } from '@/components/QRImagePanel';
 import { ConnectionConfig } from '@/components/ConnectionConfig';
@@ -31,6 +32,7 @@ const Index = () => {
       subscribe('/odom', 'nav_msgs/Odometry');
       subscribe('/battery_state', 'sensor_msgs/BatteryState');
       subscribe('/scan', 'sensor_msgs/LaserScan');
+      subscribe('/imu/data', 'sensor_msgs/Imu');
     }
   }, [connected, subscribe]);
 
@@ -73,8 +75,8 @@ const Index = () => {
         <div className="grid grid-cols-12 gap-6 h-[calc(100vh-240px)]">
           {/* LEFT COLUMN - Map, Sensor (4 cols) */}
           <div className="col-span-4 space-y-5 overflow-y-auto scrollbar-techy">
-            {/* Map - Larger */}
-            <div className="h-[500px]">
+            {/* Map - Increased Height */}
+            <div className="h-[600px]">
               <DataPanel
                 title="RViz2 Map"
                 icon={<Map className="w-5 h-5" />}
@@ -96,7 +98,7 @@ const Index = () => {
             <SensorPanel data={topicData} connected={connected} />
           </div>
 
-          {/* MIDDLE COLUMN - System Status, Battery, Topic Monitor, Velocity (4 cols) */}
+          {/* MIDDLE COLUMN - System Status, Battery, IMU, Velocity (4 cols) */}
           <div className="col-span-4 space-y-5 overflow-y-auto scrollbar-techy">
             {/* System Stats */}
             <DataPanel
@@ -134,18 +136,22 @@ const Index = () => {
             {/* Battery Panel */}
             <BatteryPanel data={topicData['/battery_state']} connected={connected} />
 
-            {/* Topic Monitor */}
-            <TopicMonitor topics={topicData} connected={connected} />
+            {/* IMU Panel */}
+            <IMUPanel data={topicData['/imu/data']} connected={connected} />
 
             {/* Velocity Panel */}
             <VelocityPanel data={topicData['/cmd_vel']} connected={connected} />
           </div>
 
           {/* RIGHT COLUMN - QR Image Logging (4 cols) */}
-          <div className="col-span-4 h-full">
-            <div className="h-full">
+          <div className="col-span-4 space-y-5">
+            {/* QR Image Panel - Fixed height with dedicated scrollbar */}
+            <div className="h-[600px] overflow-y-auto scrollbar-techy"> 
               <QRImagePanel ros={ros} data={undefined} connected={connected} />
             </div>
+
+            {/* Topic Monitor - Below QR */}
+            <TopicMonitor topics={topicData} connected={connected} />
           </div>
         </div>
       </main>

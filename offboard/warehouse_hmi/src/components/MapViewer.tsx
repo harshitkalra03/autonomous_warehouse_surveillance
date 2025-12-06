@@ -90,7 +90,7 @@ export const MapViewer = ({
     const width = canvas.width;
     const height = canvas.height;
 
-    // Clear canvas
+    // Clear canvas with dark background
     ctx.fillStyle = '#0a0e14';
     ctx.fillRect(0, 0, width, height);
 
@@ -114,7 +114,7 @@ export const MapViewer = ({
     }
 
     if (mapData) {
-      // Draw occupancy grid
+      // Draw occupancy grid with high contrast
       const cellWidth = (width / mapData.width) * scale;
       const cellHeight = (height / mapData.height) * scale;
 
@@ -123,39 +123,63 @@ export const MapViewer = ({
           const value = mapData.data[y * mapData.width + x];
           
           if (value === -1) {
-            ctx.fillStyle = 'rgba(50, 50, 70, 0.5)';
+            // Unknown/Unmapped - Light gray with subtle glow
+            ctx.fillStyle = 'rgba(100, 110, 130, 0.6)';
+            ctx.shadowColor = 'rgba(100, 110, 130, 0.3)';
+            ctx.shadowBlur = 2;
           } else if (value === 0) {
-            ctx.fillStyle = 'rgba(0, 255, 255, 0.05)';
+            // Free space - Bright cyan/white
+            ctx.fillStyle = 'rgba(200, 255, 255, 0.15)';
+            ctx.shadowColor = 'rgba(0, 255, 255, 0.1)';
+            ctx.shadowBlur = 1;
           } else {
+            // Occupied - Strong red/orange gradient
             const intensity = value / 100;
-            ctx.fillStyle = `rgba(255, 100, 100, ${intensity})`;
+            const hue = 20 * (1 - intensity); // Red to orange
+            ctx.fillStyle = `rgba(${255 - intensity * 100}, ${100 - intensity * 50}, ${50}, ${0.7 + intensity * 0.3})`;
+            ctx.shadowColor = `rgba(255, 100, 100, ${intensity * 0.4})`;
+            ctx.shadowBlur = 2;
           }
           
           ctx.fillRect(x * cellWidth, y * cellHeight, cellWidth, cellHeight);
         }
       }
+      
+      ctx.shadowColor = 'transparent';
 
       // Draw robot position
       const robotX = ((poseData.x - mapData.origin.x) / mapData.resolution) * cellWidth;
       const robotY = height - ((poseData.y - mapData.origin.y) / mapData.resolution) * cellHeight;
 
-      // Robot glow
-      const gradient = ctx.createRadialGradient(robotX, robotY, 0, robotX, robotY, 20);
-      gradient.addColorStop(0, 'rgba(0, 255, 255, 0.8)');
+      // Robot glow effect
+      const gradient = ctx.createRadialGradient(robotX, robotY, 0, robotX, robotY, 25);
+      gradient.addColorStop(0, 'rgba(0, 255, 255, 1)');
+      gradient.addColorStop(0.5, 'rgba(0, 255, 255, 0.4)');
       gradient.addColorStop(1, 'rgba(0, 255, 255, 0)');
       ctx.fillStyle = gradient;
-      ctx.fillRect(robotX - 20, robotY - 20, 40, 40);
+      ctx.beginPath();
+      ctx.arc(robotX, robotY, 25, 0, Math.PI * 2);
+      ctx.fill();
 
-      // Robot direction arrow
+      // Robot body
+      ctx.fillStyle = '#00ffff';
+      ctx.beginPath();
+      ctx.arc(robotX, robotY, 8, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Robot direction arrow with glow
       ctx.save();
       ctx.translate(robotX, robotY);
       ctx.rotate(-poseData.theta);
       
+      ctx.shadowColor = 'rgba(0, 255, 255, 0.6)';
+      ctx.shadowBlur = 4;
+      
       ctx.fillStyle = '#00ffff';
       ctx.beginPath();
-      ctx.moveTo(12, 0);
-      ctx.lineTo(-6, -8);
-      ctx.lineTo(-6, 8);
+      ctx.moveTo(15, 0);
+      ctx.lineTo(-8, -10);
+      ctx.lineTo(-8, 10);
       ctx.closePath();
       ctx.fill();
       
@@ -176,7 +200,15 @@ export const MapViewer = ({
         ctx.stroke();
       }
 
-      // Center point
+      // Center point with glow
+      const centerGradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, 15);
+      centerGradient.addColorStop(0, 'rgba(0, 255, 255, 1)');
+      centerGradient.addColorStop(1, 'rgba(0, 255, 255, 0)');
+      ctx.fillStyle = centerGradient;
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, 15, 0, Math.PI * 2);
+      ctx.fill();
+
       ctx.fillStyle = '#00ffff';
       ctx.beginPath();
       ctx.arc(centerX, centerY, 8, 0, Math.PI * 2);
@@ -186,7 +218,7 @@ export const MapViewer = ({
       ctx.save();
       ctx.translate(centerX, centerY);
       ctx.rotate(time);
-      ctx.strokeStyle = 'rgba(0, 255, 255, 0.5)';
+      ctx.strokeStyle = 'rgba(0, 255, 255, 0.6)';
       ctx.lineWidth = 2;
       ctx.beginPath();
       ctx.moveTo(0, 0);
@@ -195,8 +227,8 @@ export const MapViewer = ({
       ctx.restore();
 
       // "Waiting for map" text
-      ctx.fillStyle = 'rgba(0, 255, 255, 0.5)';
-      ctx.font = '14px "JetBrains Mono"';
+      ctx.fillStyle = 'rgba(0, 255, 255, 0.7)';
+      ctx.font = 'bold 14px "JetBrains Mono"';
       ctx.textAlign = 'center';
       ctx.fillText('AWAITING MAP DATA', centerX, height - 30);
     }
@@ -212,7 +244,6 @@ export const MapViewer = ({
       if (canvas) {
         const ctx = canvas.getContext('2d');
         if (ctx) {
-          // Trigger re-render
           setScale((s) => s);
         }
       }
@@ -244,6 +275,7 @@ export const MapViewer = ({
           'w-full h-full object-contain',
           connected && 'glow-primary'
         )}
+        style={{ filter: 'contrast(1.3) brightness(1.05)' }}
       />
 
       {/* Status badge */}
