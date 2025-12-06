@@ -1,5 +1,7 @@
 import { Battery, BatteryCharging, BatteryLow, BatteryWarning } from 'lucide-react';
 import { DataPanel } from './DataPanel';
+import { DataValue } from './DataValue';
+import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
 
 interface BatteryData {
@@ -7,6 +9,8 @@ interface BatteryData {
   voltage?: number;
   current?: number;
   charging?: boolean;
+  temperature?: number;
+  state?: string;
 }
 
 interface BatteryPanelProps {
@@ -19,6 +23,8 @@ export const BatteryPanel = ({ data, connected }: BatteryPanelProps) => {
   const voltage = data?.voltage ?? 24.5;
   const current = data?.current ?? 2.3;
   const charging = data?.charging ?? false;
+  const temperature = data?.temperature ?? 25;
+  const state = data?.state ?? 'normal';
 
   const getBatteryIcon = () => {
     if (charging) return BatteryCharging;
@@ -38,66 +44,31 @@ export const BatteryPanel = ({ data, connected }: BatteryPanelProps) => {
 
   return (
     <DataPanel
-      title="Power System"
+      title="Battery Status"
       icon={<BatteryIcon className="w-4 h-4" />}
-      status={getStatus()}
+      status={connected ? 'active' : 'inactive'}
     >
-      <div className="space-y-4">
-        {/* Battery level visualization */}
-        <div className="relative">
-          <div className="flex items-center gap-3">
-            <div className="relative flex-1 h-8 bg-muted rounded border border-border/50 overflow-hidden">
-              <div
-                className={cn(
-                  'h-full transition-all duration-500',
-                  percentage > 60 && 'bg-gradient-to-r from-success/70 to-success',
-                  percentage <= 60 && percentage > 30 && 'bg-gradient-to-r from-warning/70 to-warning',
-                  percentage <= 30 && 'bg-gradient-to-r from-destructive/70 to-destructive'
-                )}
-                style={{ width: `${percentage}%` }}
-              />
-              {/* Battery segments */}
-              <div className="absolute inset-0 flex">
-                {[...Array(10)].map((_, i) => (
-                  <div key={i} className="flex-1 border-r border-background/30 last:border-r-0" />
-                ))}
-              </div>
-            </div>
-            <span className="text-2xl font-mono font-bold text-foreground w-16 text-right">
+      <div className="space-y-2">
+        {/* Battery Percentage */}
+        <div>
+          <div className="flex items-center justify-between mb-1">
+            <span className="text-xs font-semibold text-muted-foreground">
+              Charge
+            </span>
+            <span className="text-sm font-bold text-foreground">
               {percentage}%
             </span>
           </div>
+          <Progress value={percentage} className="h-2" />
         </div>
 
-        {/* Voltage and Current */}
-        <div className="grid grid-cols-2 gap-4">
-          <div className="space-y-1">
-            <span className="text-xs uppercase tracking-wider text-muted-foreground">Voltage</span>
-            <div className="flex items-baseline gap-1">
-              <span className="text-xl font-mono font-semibold text-foreground">
-                {voltage.toFixed(1)}
-              </span>
-              <span className="text-sm text-muted-foreground">V</span>
-            </div>
-          </div>
-          <div className="space-y-1">
-            <span className="text-xs uppercase tracking-wider text-muted-foreground">Current</span>
-            <div className="flex items-baseline gap-1">
-              <span className="text-xl font-mono font-semibold text-foreground">
-                {current.toFixed(1)}
-              </span>
-              <span className="text-sm text-muted-foreground">A</span>
-            </div>
-          </div>
+        {/* Battery Stats */}
+        <div className="grid grid-cols-2 gap-2 pt-1">
+          <DataValue label="Voltage" value={voltage} unit="V" size="sm" />
+          <DataValue label="Current" value={current} unit="A" size="sm" />
+          <DataValue label="Temp" value={temperature} unit="°C" size="sm" />
+          <DataValue label="State" value={state} size="sm" />
         </div>
-
-        {/* Charging status */}
-        {charging && (
-          <div className="flex items-center gap-2 text-success text-sm">
-            <BatteryCharging className="w-4 h-4 animate-pulse" />
-            <span>Charging</span>
-          </div>
-        )}
       </div>
     </DataPanel>
   );

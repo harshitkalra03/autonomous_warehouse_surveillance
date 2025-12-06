@@ -1,18 +1,11 @@
-import { QrCode, Clock } from 'lucide-react';
+import { QrCode, Clock, Trash2 } from 'lucide-react';
 import { DataPanel } from './DataPanel';
 import { cn } from '@/lib/utils';
 import { useEffect, useState } from 'react';
 import * as ROSLIB from 'roslib';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
 
 interface QRImageData {
+  id: string;
   timestamp: string;
   qrString: string;
   rackId: string;
@@ -27,7 +20,7 @@ interface QRImagePanelProps {
 }
 
 export const QRImagePanel = ({ ros, data, connected }: QRImagePanelProps) => {
-  const [qrImages, setQrImages] = useState<QRImageData[]>(data || []);
+  const [qrImages, setQrImages] = useState<QRImageData[]>([]);
 
   useEffect(() => {
     if (!ros || !connected) return;
@@ -40,9 +33,6 @@ export const QRImagePanel = ({ ros, data, connected }: QRImagePanelProps) => {
 
     qrTopic.subscribe((message: any) => {
       const qrString = message.data;
-
-      // Parse QR format: R03_S2_ITM430
-      // Expected: RACK_SHELF_ITEM
       const parts = qrString.split('_');
 
       let rackId = 'UNKNOWN';
@@ -56,6 +46,7 @@ export const QRImagePanel = ({ ros, data, connected }: QRImagePanelProps) => {
       }
 
       const newQR: QRImageData = {
+        id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
         timestamp: new Date().toLocaleString(),
         qrString: qrString,
         rackId: rackId,
@@ -71,14 +62,17 @@ export const QRImagePanel = ({ ros, data, connected }: QRImagePanelProps) => {
     };
   }, [ros, connected]);
 
+  const handleDelete = (id: string) => {
+    setQrImages((prev) => prev.filter((qr) => qr.id !== id));
+  };
+
   return (
     <DataPanel
       title="QR Image Captures"
       icon={<QrCode className="w-4 h-4" />}
       status={connected ? 'active' : 'inactive'}
-      className="h-full flex flex-col"
     >
-      <div className="flex-1 overflow-y-auto scrollbar-techy">
+      <div className="space-y-3 overflow-y-auto scrollbar-techy h-[500px]">
         {qrImages.length === 0 ? (
           <div className="text-center py-8 text-muted-foreground text-sm">
             <QrCode className="w-8 h-8 mx-auto mb-2 opacity-50" />
@@ -86,57 +80,67 @@ export const QRImagePanel = ({ ros, data, connected }: QRImagePanelProps) => {
             <p className="text-xs mt-1">QR codes will appear here when captured</p>
           </div>
         ) : (
-          <Table>
-            <TableHeader>
-              <TableRow className="border-border/50 bg-muted/20 hover:bg-muted/30">
-                <TableHead className="font-display uppercase tracking-wider text-xs text-muted-foreground">
-                  <div className="flex items-center gap-2">
-                    <Clock className="w-3 h-3" />
-                    Time Stamp
-                  </div>
-                </TableHead>
-                <TableHead className="font-display uppercase tracking-wider text-xs text-muted-foreground">
-                  QR String
-                </TableHead>
-                <TableHead className="font-display uppercase tracking-wider text-xs text-muted-foreground">
-                  Rack ID
-                </TableHead>
-                <TableHead className="font-display uppercase tracking-wider text-xs text-muted-foreground">
-                  Shelf ID
-                </TableHead>
-                <TableHead className="font-display uppercase tracking-wider text-xs text-muted-foreground">
-                  Item Code
-                </TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {qrImages.map((qr, index) => (
-                <TableRow
-                  key={index}
-                  className="border-border/30 hover:bg-muted/30 transition-colors"
-                >
-                  <TableCell className="font-mono text-sm text-muted-foreground">
+          qrImages.map((qr) => (
+            <div
+              key={qr.id}
+              className="border border-border/30 rounded bg-muted/30 p-3 hover:bg-muted/50 transition-colors relative group"
+            >
+              {/* Header with timestamp */}
+              <div className="flex items-center justify-between gap-2 mb-3 pb-2 border-b border-border/30">
+                <div className="flex items-center gap-2">
+                  <Clock className="w-3 h-3 text-muted-foreground" />
+                  <span className="text-xs font-mono text-muted-foreground">
                     {qr.timestamp}
-                  </TableCell>
-                  <TableCell className="font-mono text-sm text-foreground break-all">
+                  </span>
+                </div>
+                <button
+                  onClick={() => handleDelete(qr.id)}
+                  className="opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-destructive/20 rounded"
+                  title="Delete"
+                >
+                  <Trash2 className="w-3 h-3 text-destructive" />
+                </button>
+              </div>
+
+              {/* QR Data Grid */}
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-1">
+                  <span className="text-xs uppercase tracking-wider text-muted-foreground">
+                    QR String
+                  </span>
+                  <div className="text-sm font-mono text-foreground break-all">
                     {qr.qrString}
-                  </TableCell>
-                  <TableCell className="font-mono text-sm font-semibold text-primary">
+                  </div>
+                </div>
+                <div className="space-y-1">
+                  <span className="text-xs uppercase tracking-wider text-muted-foreground">
+                    Rack ID
+                  </span>
+                  <div className="text-sm font-mono font-semibold text-primary">
                     {qr.rackId}
-                  </TableCell>
-                  <TableCell className="font-mono text-sm font-semibold text-foreground">
+                  </div>
+                </div>
+                <div className="space-y-1">
+                  <span className="text-xs uppercase tracking-wider text-muted-foreground">
+                    Shelf ID
+                  </span>
+                  <div className="text-sm font-mono font-semibold text-foreground">
                     {qr.shelfId}
-                  </TableCell>
-                  <TableCell className="font-mono text-sm font-semibold text-foreground">
+                  </div>
+                </div>
+                <div className="space-y-1">
+                  <span className="text-xs uppercase tracking-wider text-muted-foreground">
+                    Item Code
+                  </span>
+                  <div className="text-sm font-mono font-semibold text-foreground">
                     {qr.itemCode}
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))
         )}
       </div>
     </DataPanel>
   );
 };
-
