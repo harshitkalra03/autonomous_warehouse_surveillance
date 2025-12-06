@@ -76,8 +76,9 @@ export const QRImagePanel = ({ ros, data, connected }: QRImagePanelProps) => {
       title="QR Image Captures"
       icon={<QrCode className="w-4 h-4" />}
       status={connected ? 'active' : 'inactive'}
+      className="h-full flex flex-col"
     >
-      <div className="max-h-[500px] overflow-y-auto scrollbar-techy">
+      <div className="flex-1 overflow-y-auto scrollbar-techy">
         {qrImages.length === 0 ? (
           <div className="text-center py-8 text-muted-foreground text-sm">
             <QrCode className="w-8 h-8 mx-auto mb-2 opacity-50" />
