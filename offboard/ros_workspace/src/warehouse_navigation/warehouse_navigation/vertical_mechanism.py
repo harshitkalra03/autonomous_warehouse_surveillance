@@ -40,18 +40,18 @@ class VerticalMechanism(Node):
 
         self.get_logger().info(f"Received QR data: {qr_string}")
         
-        qr_data_done.add((rack_id, shelf_id, item_code))
+        self.qr_data_done.add((rack_id, shelf_id, item_code))
         self.current_shelf_id = shelf_id
 
     def one_level_up(self):
         msg = String()
-        msg.data = f'p {steps_one_level}'  # The motor command
+        msg.data = f'p {self.steps_one_level}'  # The motor command
         self.stepper_publisher.publish(msg)
         self.get_logger().info(f'Published: "{msg.data}"')
 
     def come_down(self):
         msg = String()
-        msg.data = f'n {steps_one_level*4}'  # The motor command
+        msg.data = f'n {self.steps_one_level*4}'  # The motor command
         self.stepper_publisher.publish(msg)
         self.get_logger().info(f'Published: "{msg.data}"')
 
@@ -63,11 +63,11 @@ class VerticalMechanism(Node):
             rclpy.shutdown()
     
     def main_loop(self):
-        exists = any(r == current_rack_id and s == current_shelf_id for r, s, item in qr_data_done)
+        exists = any(r == self.current_rack_id and s == self.current_shelf_id for r, s, item in self.qr_data_done)
         if exists:
-            if(current_rack_id == 5):
+            if(self.current_rack_id == 5):
                 self.current_shelf_id = None
-                current_rack_id = 1
+                self.current_rack_id = 1
                 self.come_down()
                 return
             else:
@@ -76,7 +76,7 @@ class VerticalMechanism(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    node = MotorCommandPublisher()
+    node = VerticalMechanism()
     rclpy.spin(node)
 
 if __name__ == '__main__':
