@@ -23,7 +23,7 @@ class VerticalMechanism(Node):
 
     def parse_qr_string(self, qr_str):
         pattern = r'R(\d+)_S(\d+)_ITM(\d+)'  # pattern to match R#, S#, ITM#
-        match = re.match(pattern, s)
+        match = re.match(pattern, qr_str)
         if match:
             rack_id, shelf_id, item_no = map(int, match.groups())
             return rack_id, shelf_id, item_no
@@ -33,7 +33,7 @@ class VerticalMechanism(Node):
     def qr_data_callback(self, msg):
         qr_string = msg.data
 
-        rack_id, shelf_id, item_code = self.parse_qr_string(qr_str)
+        rack_id, shelf_id, item_code = self.parse_qr_string(qr_string)
         
         if rack_id is None:
             return

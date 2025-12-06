@@ -78,9 +78,70 @@ def generate_launch_description():
         }.items()
     )
 
+    joy_node_1 = Node(
+        package='joy',
+        executable='joy_node',
+        name='joy_node',
+        output='screen'
+    )
+
+    joy_node_2 = Node(
+        package='teleop_twist_joy',
+        executable='teleop_node',
+        name='teleop_twist_joy',
+        output='screen',
+        parameters=[{
+            # Safety: must hold RB to move
+            'require_enable_button': True,
+            'enable_button': 5,          # RB (adjust if different)
+            'enable_turbo_button': 4,    # LB = turbo
+
+            # Deadzone so robot doesn't creep when stick is slightly off-center
+            'deadzone': 0.05,
+            'autorepeat_rate': 20.0,     # Hz, smooth updates while holding
+
+            # --- Holonomic linear controls (x, y) ---
+            # Left stick vertical (axes[1]) -> forward/back
+            # Left stick horizontal (axes[0]) -> strafe left/right
+            'axis_linear': {
+                'x': 1,   # forward/back (left stick up/down)
+                'y': 0    # strafe (left stick left/right)
+            },
+
+            # Normal speed
+            'scale_linear': {
+                'x': 0.4,   # m/s
+                'y': 0.4
+            },
+
+            # Turbo speed (while LB + RB held)
+            'scale_linear_turbo': {
+                'x': 0.8,
+                'y': 0.8
+            },
+
+            # --- Angular control (yaw) ---
+            # Right stick horizontal (axes[3]) -> rotate
+            'axis_angular': {
+                'yaw': 3
+            },
+
+            'scale_angular': {
+                'yaw': 1.0   # rad/s normal
+            },
+            'scale_angular_turbo': {
+                'yaw': 2.0   # rad/s turbo
+            },
+        }]
+    )
+
+
+
     return LaunchDescription([
         rviz2_node,
         slam_node,
         nav2_bringup_launch,
-        robot_localization_node
+        robot_localization_node,
+        joy_node_1,
+        joy_node_2
     ])

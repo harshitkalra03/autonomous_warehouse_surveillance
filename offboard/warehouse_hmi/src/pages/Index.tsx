@@ -33,6 +33,7 @@ const Index = () => {
       subscribe('/battery_state', 'sensor_msgs/BatteryState');
       subscribe('/scan', 'sensor_msgs/LaserScan');
       subscribe('/imu/data', 'sensor_msgs/Imu');
+      subscribe('/image_raw', 'sensor_msgs/Image');
     }
   }, [connected, subscribe]);
 
