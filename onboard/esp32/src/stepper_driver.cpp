@@ -8,7 +8,7 @@
 
 #pragma endregion
 
-#define RPM 150
+#define RPM 350
 int delayMS = 60L * 1000000L / (RPM * 200); // 200 steps per revolution
 
 void stepMotor(int steps, bool dir) {

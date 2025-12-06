@@ -23,16 +23,16 @@ def generate_launch_description():
                 {'video_device': '/dev/video0'}
             ]
         ),
-        # IncludeLaunchDescription(
-        #     PythonLaunchDescriptionSource(lidar_launch_path)
-        # ),
-        # Node(
-        #     package='sensors',
-        #     executable='bno055_node',
-        #     name='bno055',
-        #     output='screen',
-        #     parameters=[  # Optional: pass parameters if needed
-        #         {'i2c_port': '/dev/i2c-1'}  # example, adjust if needed
-        #     ]
-        # )
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(lidar_launch_path)
+        ),
+        Node(
+            package='sensors',
+            executable='bno055_node',
+            name='bno055',
+            output='screen',
+            parameters=[  # Optional: pass parameters if needed
+                {'i2c_port': '/dev/i2c-1'}  # example, adjust if needed
+            ]
+        )
     ])

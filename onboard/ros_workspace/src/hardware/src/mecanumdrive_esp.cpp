@@ -162,20 +162,20 @@ hardware_interface::return_type MecanumDriveEsp::write(
 
   
 
-  RCLCPP_INFO_THROTTLE(
-      logger_,
-      steady_clock,
-      10,
-      "Wheel cmds: FL=%.3f FR=%.3f RL=%.3f RR=%.3f  enc cmds: FL=%d FR=%d RL=%d RR=%d",
-      front_left_wheel_.cmd,
-      front_right_wheel_.cmd,
-      rear_left_wheel_.cmd,
-      rear_right_wheel_.cmd,
-      front_left_wheel_.enc,
-      front_right_wheel_.enc,
-      rear_left_wheel_.enc,
-      rear_right_wheel_.enc
-  );
+  // RCLCPP_INFO_THROTTLE(
+  //     logger_,
+  //     steady_clock,
+  //     10,
+  //     "Wheel cmds: FL=%.3f FR=%.3f RL=%.3f RR=%.3f  enc cmds: FL=%d FR=%d RL=%d RR=%d",
+  //     front_left_wheel_.cmd,
+  //     front_right_wheel_.cmd,
+  //     rear_left_wheel_.cmd,
+  //     rear_right_wheel_.cmd,
+  //     front_left_wheel_.enc,
+  //     front_right_wheel_.enc,
+  //     rear_left_wheel_.enc,
+  //     rear_right_wheel_.enc
+  // );
 
   
 
