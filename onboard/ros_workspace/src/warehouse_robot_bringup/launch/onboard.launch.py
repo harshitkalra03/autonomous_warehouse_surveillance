@@ -1,3 +1,5 @@
+#!/home/comical/autonomous_warehouse_surveillance/onboard/ros_workspace/ros_env/bin/python3
+
 import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription

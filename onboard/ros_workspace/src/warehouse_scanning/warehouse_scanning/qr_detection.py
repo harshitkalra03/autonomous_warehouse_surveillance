@@ -59,14 +59,15 @@ class QRViewer(Node):
         if rack_id is None:
             self.get_logger().warn(f"Invalid QR format: {qr_str}")
             return
+        
+        self.qr_data_publisher.publish(String(data=qr_str))
+        
         try:
             self.cursor.execute("""
             INSERT INTO qr_scans (timestamp, qr_string, rack_id, shelf_id, item_code)
             VALUES (?, ?, ?, ?, ?)
             """, (datetime.now().isoformat(), qr_str, rack_id, shelf_id, item_code))
             self.conn.commit()
-
-            self.qr_data_publisher.publish(String(data=qr_str))
 
         except sqlite3.IntegrityError:
             self.get_logger().info(f"Duplicate ignored: {qr_str}")
