@@ -31,7 +31,6 @@ const Index = () => {
       subscribe('/odom', 'nav_msgs/Odometry');
       subscribe('/battery_state', 'sensor_msgs/BatteryState');
       subscribe('/scan', 'sensor_msgs/LaserScan');
-      
     }
   }, [connected, subscribe]);
 
@@ -52,7 +51,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       <Header
         connected={connected}
         connecting={connecting}
@@ -60,9 +59,9 @@ const Index = () => {
         onDisconnect={disconnect}
       />
 
-      <main className="container mx-auto px-4 py-6">
+      <main className="flex-1 w-full max-w-[98vw] mx-auto px-8 py-5">
         {/* Connection Config */}
-        <div className="mb-6">
+        <div className="mb-5">
           <ConnectionConfig
             url={wsUrl}
             onUrlChange={setWsUrl}
@@ -70,91 +69,103 @@ const Index = () => {
           />
         </div>
 
-        {/* Main Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Map Section - Takes 2 columns */}
-          <div className="lg:col-span-2">
-            <DataPanel
-              title="RViz2 Map"
-              icon={<Map className="w-4 h-4" />}
-              status={connected ? 'active' : 'inactive'}
-              className="h-full"
-            >
-              <MapViewer
-                ros={ros}
-                connected={connected}
-                mapTopic="/map"
-                poseTopic="/robot_pose"
-              />
-            </DataPanel>
+        {/* Three Column Layout */}
+        <div className="grid grid-cols-12 gap-6 h-[calc(100vh-240px)]">
+          {/* LEFT COLUMN - Map, Sensor (4 cols) */}
+          <div className="col-span-4 space-y-5 overflow-y-auto scrollbar-techy">
+            {/* Map - Larger */}
+            <div className="h-[500px]">
+              <DataPanel
+                title="RViz2 Map"
+                icon={<Map className="w-5 h-5" />}
+                status={connected ? 'active' : 'inactive'}
+                className="h-full"
+              >
+                <div className="h-full">
+                  <MapViewer
+                    ros={ros}
+                    connected={connected}
+                    mapTopic="/map"
+                    poseTopic="/robot_pose"
+                  />
+                </div>
+              </DataPanel>
+            </div>
+
+            {/* Sensor Panel */}
+            <SensorPanel data={topicData} connected={connected} />
           </div>
 
-          {/* Right Column - Status Panels */}
-          <div className="space-y-6">
+          {/* MIDDLE COLUMN - System Status, Battery, Topic Monitor, Velocity (4 cols) */}
+          <div className="col-span-4 space-y-5 overflow-y-auto scrollbar-techy">
             {/* System Stats */}
             <DataPanel
               title="System Status"
-              icon={<Cpu className="w-4 h-4" />}
+              icon={<Cpu className="w-5 h-5" />}
               status={connected ? 'active' : 'inactive'}
             >
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-5">
                 <DataValue
                   label="Uptime"
                   value={formatUptime(uptime)}
-                  size="sm"
+                  size="md"
                 />
                 <DataValue
                   label="CPU Temp"
                   value="42"
                   unit="°C"
-                  size="sm"
+                  size="md"
                 />
                 <DataValue
                   label="Memory"
                   value="68"
                   unit="%"
-                  size="sm"
+                  size="md"
                 />
                 <DataValue
                   label="Disk"
                   value="45"
                   unit="%"
-                  size="sm"
+                  size="md"
                 />
               </div>
             </DataPanel>
 
+            {/* Battery Panel */}
             <BatteryPanel data={topicData['/battery_state']} connected={connected} />
+
+            {/* Topic Monitor */}
+            <TopicMonitor topics={topicData} connected={connected} />
+
+            {/* Velocity Panel */}
+            <VelocityPanel data={topicData['/cmd_vel']} connected={connected} />
           </div>
 
-          {/* Bottom Row */}
-          <VelocityPanel data={topicData['/cmd_vel']} connected={connected} />
-          <SensorPanel data={topicData} connected={connected} />
-          <TopicMonitor topics={topicData} connected={connected} />
-        </div>
-
-        {/* QR Image Captures Table - Full Width */}
-        <div className="mt-6">
-          <QRImagePanel ros={ros} data={undefined} connected={connected} />
-        </div>
-
-        {/* Footer Stats */}
-        <footer className="mt-8 py-4 border-t border-border/30">
-          <div className="flex items-center justify-between text-xs text-muted-foreground">
-            <div className="flex items-center gap-4">
-              <span className="flex items-center gap-1">
-                <Clock className="w-3 h-3" />
-                Last update: {new Date().toLocaleTimeString()}
-              </span>
-              <span className="flex items-center gap-1">
-                <Thermometer className="w-3 h-3" />
-                Environment: Normal
-              </span>
+          {/* RIGHT COLUMN - QR Image Logging (4 cols) */}
+          <div className="col-span-4 h-full">
+            <div className="h-full">
+              <QRImagePanel ros={ros} data={undefined} connected={connected} />
             </div>
-            <span className="font-mono">ROS2 Jazzy • rosbridge_suite v1.3</span>
           </div>
-        </footer>
+        </div>
       </main>
+
+      {/* Footer */}
+      <footer className="py-3 px-8 border-t border-border/30 bg-background">
+        <div className="flex items-center justify-between text-sm text-muted-foreground">
+          <div className="flex items-center gap-6">
+            <span className="flex items-center gap-2">
+              <Clock className="w-4 h-4" />
+              Last update: {new Date().toLocaleTimeString()}
+            </span>
+            <span className="flex items-center gap-2">
+              <Thermometer className="w-4 h-4" />
+              Environment: Normal
+            </span>
+          </div>
+          <span className="font-mono">ROS2 Jazzy • rosbridge_suite v1.3</span>
+        </div>
+      </footer>
     </div>
   );
 };

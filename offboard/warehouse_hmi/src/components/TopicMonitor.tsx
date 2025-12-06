@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Terminal, ChevronDown, ChevronRight } from 'lucide-react';
+import { Terminal, ChevronDown, ChevronRight, Radio } from 'lucide-react';
 import { DataPanel } from './DataPanel';
 import { cn } from '@/lib/utils';
+import { Badge } from './ui/badge';
 
 interface TopicData {
   [key: string]: any;
