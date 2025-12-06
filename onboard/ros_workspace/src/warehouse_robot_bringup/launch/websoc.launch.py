@@ -16,7 +16,6 @@ def generate_launch_description():
     my_robot_description_pkg = get_package_share_directory('warehouse_robot_description')
     my_robot_bringup_pkg = get_package_share_directory('warehouse_robot_bringup')
     sensors_pkg = get_package_share_directory('sensors')
-    scanner_pkg = get_package_share_directory('warehouse_scanning')
 
     urdf_path = os.path.join(my_robot_description_pkg, 'urdf', 'my_robot.urdf.xacro')
     controller_config_path = os.path.join(my_robot_bringup_pkg, 'config', 'my_robot_controllers.yaml')
@@ -134,33 +133,26 @@ def generate_launch_description():
         )
     )
 
-    scanning_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(scanner_pkg, 'launch', 'qr_scanning.launch.py')
-        )
-    )
-
     rosbridge_websocket_launch = Node(
         package='rosbridge_server',
         executable='rosbridge_websocket',
         name='rosbridge_websocket',
         parameters=[{
             'use_sim_time': False,
-            'delay_between_messages': 0
+            'delay_between_messages': 0.0
         }],
         output='screen'
     )
 
     return LaunchDescription([
-        robot_state_publisher_node,
-        static_lidar_tf,
-        delayed_controller_manager,
-        delayed_joint_state_broad_spawner,
-        delayed_mecanum_drive_spawner,
-        relay_cmd_vel_node,
-        sensors_launch,
-        stepper_motor_node,
+        # robot_state_publisher_node,
+        # static_lidar_tf,
+        # delayed_controller_manager,
+        # delayed_joint_state_broad_spawner,
+        # delayed_mecanum_drive_spawner,
+        # relay_cmd_vel_node,
+        # sensors_launch,
+        # stepper_motor_node,
         rosbridge_websocket_launch,
-        scanning_launch
     ])
     

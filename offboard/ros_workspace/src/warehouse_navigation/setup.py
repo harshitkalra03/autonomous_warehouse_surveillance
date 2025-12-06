@@ -37,6 +37,7 @@ setup(
             'frontier_exploration.py = warehouse_navigation.frontier_exploration:main',
             'shelf_detector.py = warehouse_navigation.shelf_detector:main',
             'navigate_to_shelf.py = warehouse_navigation.shelf_navigator:main',
+            'vertical_mechanism.py = warehouse_navigation.vertical_mechanism:main',
         ],
     },
 )

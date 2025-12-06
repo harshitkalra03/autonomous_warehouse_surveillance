@@ -7,6 +7,7 @@ from pyzbar.pyzbar import decode
 import sqlite3
 from datetime import datetime
 import time
+from std_msgs.msg import String
 
 class QRViewer(Node):
     def __init__(self):
@@ -43,6 +44,8 @@ class QRViewer(Node):
         self.fps = 0.0
         cv2.namedWindow("QR Detection", cv2.WINDOW_NORMAL)
 
+        self.qr_data_publisher = self.create_publisher(String, '/qr_data', 50)
+
     def parse_qr_string(self, qr_str):
         try:
             parts = qr_str.split("_")
@@ -61,6 +64,9 @@ class QRViewer(Node):
             VALUES (?, ?, ?, ?, ?)
             """, (datetime.now().isoformat(), qr_str, rack_id, shelf_id, item_code))
             self.conn.commit()
+
+            self.qr_data_publisher.publish(String(data=qr_str))
+
         except sqlite3.IntegrityError:
             self.get_logger().info(f"Duplicate ignored: {qr_str}")
 

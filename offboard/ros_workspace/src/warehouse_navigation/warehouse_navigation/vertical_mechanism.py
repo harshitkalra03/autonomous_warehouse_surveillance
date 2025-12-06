@@ -1,0 +1,83 @@
+#!/usr/bin/env python3
+import rclpy
+from rclpy.node import Node
+from std_msgs.msg import String
+
+class VerticalMechanism(Node):
+    def __init__(self):
+        super().__init__('vertical_mechanism')
+
+        # Create publisher for /motor_command topic
+        self.stepper_publisher = self.create_publisher(String, '/motor_command', 10)
+        self.qr_data_subscriber = self.create_subscription(String, '/qr_data', self.qr_data_callback, 10)
+
+        # Publish command once after node starts
+        self.timer = self.create_timer(0.1, self.main_loop)
+        self.published = False
+
+        self.steps_one_level = 500
+        self.qr_data_done = set()
+        self.current_shelf_id = 1
+        self.current_rack_id = 1
+
+    def parse_qr_string(self, qr_str):
+        try:
+            parts = qr_str.split("_")
+            return parts[0], parts[1], parts[2]
+        except:
+            return None, None, None
+    
+    def qr_data_callback(self, msg):
+        qr_string = msg.data
+
+        rack_id, shelf_id, item_code = self.parse_qr_string(qr_str)
+        
+        if rack_id is None:
+            return
+
+        if(rack_id, shelf_id, item_code) in self.qr_data_done:
+            return
+
+        self.get_logger().info(f"Received QR data: {qr_string}")
+        
+        qr_data_done.add((rack_id, shelf_id, item_code))
+        self.current_shelf_id = shelf_id
+
+    def one_level_up(self):
+        msg = String()
+        msg.data = f'p {steps_one_level}'  # The motor command
+        self.stepper_publisher.publish(msg)
+        self.get_logger().info(f'Published: "{msg.data}"')
+
+    def come_down(self):
+        msg = String()
+        msg.data = f'n {steps_one_level*4}'  # The motor command
+        self.stepper_publisher.publish(msg)
+        self.get_logger().info(f'Published: "{msg.data}"')
+
+    def publish_command(self):
+        if not self.published:
+            
+            self.published = True
+            # Optional: shutdown after publishing once
+            rclpy.shutdown()
+    
+    def main_loop(self):
+        exists = any(r == current_rack_id and s == current_shelf_id for r, s, item in qr_data_done)
+        if exists:
+            if(current_rack_id == 5):
+                self.current_shelf_id = None
+                current_rack_id = 1
+                self.come_down()
+                return
+            else:
+                self.current_rack_id += 1
+                self.one_level_up()
+
+def main(args=None):
+    rclpy.init(args=args)
+    node = MotorCommandPublisher()
+    rclpy.spin(node)
+
+if __name__ == '__main__':
+    main()
