@@ -43,14 +43,14 @@ def generate_launch_description():
                                 parameters=[parameter_file],
                                 namespace='/',
                                 )
-    tf2_node = Node(package='tf2_ros',
-                    executable='static_transform_publisher',
-                    name='static_tf_pub_laser',
-                    arguments=['0', '0', '0.02','0', '0', '0', '1','base_link','my_robot/base_link/gpu_lidar'],
-                    )
+    # tf2_node = Node(package='tf2_ros',
+    #                 executable='static_transform_publisher',
+    #                 name='static_tf_pub_laser',
+    #                 arguments=['0.27', '0', '0.02','1', '0', '0', '0','base_link','lidar_link'],
+    #                 )
 
     return LaunchDescription([
         params_declare,
         driver_node,
-        tf2_node,
+        # tf2_node,
     ])

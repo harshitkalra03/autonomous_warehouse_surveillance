@@ -51,7 +51,7 @@
 </link>
 
 <!-- Lidar Mount -->
-<link name="lidar_mount_link">
+<!-- <link name="lidar_mount_link">
   <visual>
     <geometry>
       <box size="0.05 0.2 0.02" />
@@ -74,7 +74,7 @@
              iyz="0.0"
              izz="${lidar_mount_mass * (0.05 * 0.05 + 0.2 * 0.2) / 12}" />
   </inertial>
-</link>
+</link> -->
 
 <link name="plate_link">
   <visual>
@@ -574,18 +574,23 @@
   <origin xyz="-0.29 0 0.14" rpy="0 0 0" />
 </joint>
 
-<joint name="top_plate_to_lidar_mount" type="fixed">
+
+<!-- <joint name="top_plate_to_lidar_mount" type="fixed">
   <parent link="base_link" />
   <child link="lidar_mount_link" />
-  <!-- Mount positioned on base plate, 10cm (0.1m) from the front of robot -->
   <origin xyz="0.25 0 ${rod_height/2 + 0.025}" rpy="0 0 0" />
-</joint>
+</joint> -->
 
-<joint name="lidar_mount_to_lidar" type="fixed">
+<!-- <joint name="lidar_mount_to_lidar" type="fixed">
   <parent link="lidar_mount_link" />
   <child link="lidar_link" />
-  <!-- Lidar positioned on top of the 2cm mount -->
   <origin xyz="0 0 ${0.02/2 + lidar_height/2}" rpy="0 0 0" />
+</joint> -->
+
+<joint name="base_link_to_lidar" type="fixed">
+  <parent link="base_link" />
+  <child link="lidar_link" />
+  <origin xyz="0.27 0 0.02" rpy="3.14 0 -1.57" />
 </joint>
 
 <!-- Wheel links -->

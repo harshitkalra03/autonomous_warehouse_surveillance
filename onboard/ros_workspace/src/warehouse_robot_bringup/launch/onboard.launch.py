@@ -47,17 +47,17 @@ def generate_launch_description():
     # -------------------------------------------------------------------------
     # 5. Static TFs (Optional: better to have in URDF)
     # -------------------------------------------------------------------------
-    static_lidar_tf = Node(
-        package='tf2_ros',
-        executable='static_transform_publisher',
-        name='gpu_lidar_tf_publisher',
-        arguments=[
-            '0', '0', '0', '1.5708', '0', '0',  # 1.5708 radians = 90 degrees yaw
-            'base_link', 'my_robot/base_link/gpu_lidar'
-        ],
-        parameters=[{'use_sim_time': False}],
-        output='screen'
-    )
+    # static_lidar_tf = Node(
+    #     package='tf2_ros',
+    #     executable='static_transform_publisher',
+    #     name='gpu_lidar_tf_publisher',
+    #     arguments=[
+    #         '0.27', '0', '0', '0', '0', '0',  # 1.5708 radians = 90 degrees yaw
+    #         'base_link', 'my_robot/base_link/gpu_lidar'
+    #     ],
+    #     parameters=[{'use_sim_time': False}],
+    #     output='screen'
+    # )
 
     # -------------------------------------------------------------------------
     # 6. ros2_control
@@ -155,7 +155,7 @@ def generate_launch_description():
 
     return LaunchDescription([
         robot_state_publisher_node,
-        static_lidar_tf,
+        # static_lidar_tf,
         delayed_controller_manager,
         delayed_joint_state_broad_spawner,
         delayed_mecanum_drive_spawner,
