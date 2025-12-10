@@ -26,13 +26,18 @@ hardware_interface::CallbackReturn MecanumDriveEsp::on_init(const hardware_inter
   cfg_.device = info_.hardware_parameters["device"];
   cfg_.baud_rate = std::stoi(info_.hardware_parameters["baud_rate"]);
   cfg_.timeout = std::stoi(info_.hardware_parameters["timeout"]);
-  cfg_.enc_counts_per_rev = std::stoi(info_.hardware_parameters["enc_counts_per_rev"]);
+  
+  // Load individual encoder calibration parameters
+  cfg_.left_front_enc_counts_per_rev = std::stoi(info_.hardware_parameters["left_front_enc_counts_per_rev"]);
+  cfg_.right_front_enc_counts_per_rev = std::stoi(info_.hardware_parameters["right_front_enc_counts_per_rev"]);
+  cfg_.left_rear_enc_counts_per_rev = std::stoi(info_.hardware_parameters["left_rear_enc_counts_per_rev"]);
+  cfg_.right_rear_enc_counts_per_rev = std::stoi(info_.hardware_parameters["right_rear_enc_counts_per_rev"]);
 
-  // Set up the wheels
-  front_left_wheel_.setup(cfg_.left_front_wheel_name, cfg_.enc_counts_per_rev);
-  front_right_wheel_.setup(cfg_.right_front_wheel_name, cfg_.enc_counts_per_rev);
-  rear_left_wheel_.setup(cfg_.left_rear_wheel_name, cfg_.enc_counts_per_rev);
-  rear_right_wheel_.setup(cfg_.right_rear_wheel_name, cfg_.enc_counts_per_rev);
+  // Set up the wheels with their individual calibration values
+  front_left_wheel_.setup(cfg_.left_front_wheel_name, cfg_.left_front_enc_counts_per_rev);
+  front_right_wheel_.setup(cfg_.right_front_wheel_name, cfg_.right_front_enc_counts_per_rev);
+  rear_left_wheel_.setup(cfg_.left_rear_wheel_name, cfg_.left_rear_enc_counts_per_rev);
+  rear_right_wheel_.setup(cfg_.right_rear_wheel_name, cfg_.right_rear_enc_counts_per_rev);
 
   // Set up the Esp connection
   esp_.setup(cfg_.device, cfg_.baud_rate, cfg_.timeout);  
@@ -162,20 +167,20 @@ hardware_interface::return_type MecanumDriveEsp::write(
 
   
 
-  // RCLCPP_INFO_THROTTLE(
-  //     logger_,
-  //     steady_clock,
-  //     10,
-  //     "Wheel cmds: FL=%.3f FR=%.3f RL=%.3f RR=%.3f  enc cmds: FL=%d FR=%d RL=%d RR=%d",
-  //     front_left_wheel_.cmd,
-  //     front_right_wheel_.cmd,
-  //     rear_left_wheel_.cmd,
-  //     rear_right_wheel_.cmd,
-  //     front_left_wheel_.enc,
-  //     front_right_wheel_.enc,
-  //     rear_left_wheel_.enc,
-  //     rear_right_wheel_.enc
-  // );
+  RCLCPP_INFO_THROTTLE(
+      logger_,
+      steady_clock,
+      10,
+      "Wheel cmds: FL=%.3f FR=%.3f RL=%.3f RR=%.3f  enc cmds: FL=%d FR=%d RL=%d RR=%d",
+      front_left_wheel_.cmd,
+      front_right_wheel_.cmd,
+      rear_left_wheel_.cmd,
+      rear_right_wheel_.cmd,
+      front_left_wheel_.enc,
+      front_right_wheel_.enc,
+      rear_left_wheel_.enc,
+      rear_right_wheel_.enc
+  );
 
   
 
