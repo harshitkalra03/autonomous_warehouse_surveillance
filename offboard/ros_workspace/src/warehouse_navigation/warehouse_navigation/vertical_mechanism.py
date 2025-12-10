@@ -16,7 +16,7 @@ class VerticalMechanism(Node):
         self.timer = self.create_timer(0.1, self.main_loop)
         self.published = False
 
-        self.steps_one_level = 500
+        self.steps_one_level = 1900
         self.qr_data_done = set()
         self.current_shelf_id = 1
         self.current_rack_id = 1
