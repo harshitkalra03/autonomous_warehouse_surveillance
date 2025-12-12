@@ -48,6 +48,8 @@ def generate_launch_description():
             'minimum_travel_heading': 0.1,
             'start_with_default_pose': True,
             'first_map_only': False,
+            'minimum_travel_distance': 0.75
+            
         }],
     )
 

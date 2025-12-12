@@ -102,7 +102,7 @@ hardware_interface::CallbackReturn MecanumDriveEsp::on_activate(const rclcpp_lif
   
   // Assuming the Esp sketch expects PID values (Kp, Ki, Kd, Ko)
   // You might need to adjust this if your 4-wheel sketch needs different PID handling
-  esp_.setPidValues(30, 20, 0, 100);
+  esp_.setPidValues(30, 0, 20, 100);
 
   return hardware_interface::CallbackReturn::SUCCESS;
 }
@@ -179,10 +179,10 @@ hardware_interface::return_type MecanumDriveEsp::write(
 
   
 
-  double fl_motor = front_left_wheel_.cmd / front_left_wheel_.rads_per_count / cfg_.loop_rate;
-  double fr_motor = front_right_wheel_.cmd / front_right_wheel_.rads_per_count / cfg_.loop_rate;
-  double rl_motor = rear_left_wheel_.cmd / rear_left_wheel_.rads_per_count / cfg_.loop_rate;
-  double rr_motor = rear_right_wheel_.cmd / rear_right_wheel_.rads_per_count / cfg_.loop_rate;
+  int fl_motor = static_cast<int>(front_left_wheel_.cmd / front_left_wheel_.rads_per_count / cfg_.loop_rate);
+  int fr_motor = static_cast<int>(front_right_wheel_.cmd / front_right_wheel_.rads_per_count / cfg_.loop_rate);
+  int rl_motor = static_cast<int>(rear_left_wheel_.cmd / rear_left_wheel_.rads_per_count / cfg_.loop_rate);
+  int rr_motor = static_cast<int>(rear_right_wheel_.cmd / rear_right_wheel_.rads_per_count / cfg_.loop_rate);
 
   esp_.setMotorValues(fl_motor, fr_motor, rl_motor, rr_motor);
 
