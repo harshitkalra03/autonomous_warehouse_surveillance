@@ -29,14 +29,7 @@ public:
 
 private:
   serial::Serial serial_conn_; 
-  
-  // Storage for encoder values received from Esp
-  // We need these because 'setMotorValues' receives the data, 
-  // but 'readEncoderValues' needs to return it later.
-  int enc_1_ = 0;
-  int enc_2_ = 0;
-  int enc_3_ = 0;
-  int enc_4_ = 0;
+
 };
 
 #endif // MECANUMDRIVE_ESP_ESP_COMMS_H

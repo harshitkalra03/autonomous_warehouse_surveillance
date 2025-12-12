@@ -39,7 +39,7 @@ def generate_launch_description():
             'scan_topic': '/scan',
             'mode': 'mapping',
             'transform_timeout': 0.5,
-            'map_update_interval': 5.0,
+            'map_update_interval': 0.5,
             'minimum_time_interval': 0.5,
             'transform_publish_period': 0.1,
             'throttle_scans': 1,
@@ -48,6 +48,8 @@ def generate_launch_description():
             'minimum_travel_heading': 0.1,
             'start_with_default_pose': True,
             'first_map_only': False,
+            'minimum_travel_distance': 0.75
+            
         }],
     )
 
@@ -135,7 +137,12 @@ def generate_launch_description():
         }]
     )
 
-
+    motor_command_node = Node(
+        package='warehouse_robot_bringup',
+        executable='motor_command_controller.py',
+        name='motor_command_controller',
+        output='screen'
+    )
 
     return LaunchDescription([
         rviz2_node,
@@ -143,5 +150,8 @@ def generate_launch_description():
         nav2_bringup_launch,
         robot_localization_node,
         joy_node_1,
-        joy_node_2
+        joy_node_2,
+        motor_command_node,
     ])
+
+                                                                                                                                                                                                                                                                                                                           

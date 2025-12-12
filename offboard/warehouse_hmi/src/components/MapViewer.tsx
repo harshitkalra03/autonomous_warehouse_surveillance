@@ -289,14 +289,6 @@ export const MapViewer = ({
         </span>
       </div>
 
-      {/* Coordinates display */}
-      <div className="absolute bottom-4 right-4 px-3 py-2 rounded bg-card/80 border border-border/50">
-        <div className="text-xs font-mono text-muted-foreground">
-          <span className="text-primary">X:</span> {poseData.x.toFixed(2)}m{' '}
-          <span className="text-primary">Y:</span> {poseData.y.toFixed(2)}m{' '}
-          <span className="text-primary">θ:</span> {(poseData.theta * 180 / Math.PI).toFixed(1)}°
-        </div>
-      </div>
     </div>
   );
 };

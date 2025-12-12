@@ -99,8 +99,8 @@ controller_server:
       wz_std: 0.3      # Moderate rotational variation
       
       # Velocity limits - full holonomic capability
-      vx_max: 0.5
-      vx_min: -0.35    # Allow some reverse, but PreferForwardCritic will discourage it
+      vx_max: 1.0
+      vx_min: 0.5    # Allow some reverse, but PreferForwardCritic will discourage it
       vy_max: 0.5      # Full sideways speed
       wz_max: 1.9
       
