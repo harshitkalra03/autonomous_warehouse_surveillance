@@ -34,7 +34,7 @@ void IRAM_ATTR frontLeftISR() {
     uint8_t a = digitalRead(FRONT_LEFT_ENC_PIN_A);
     uint8_t b = digitalRead(FRONT_LEFT_ENC_PIN_B);
     uint8_t state = (a << 1) | b;
-    front_left_enc_pos += ENC_STATES[(front_left_prev << 2) | state];
+    front_left_enc_pos += -ENC_STATES[(front_left_prev << 2) | state];
     front_left_prev = state;
 }
 
@@ -50,7 +50,7 @@ void IRAM_ATTR backLeftISR() {
     uint8_t a = digitalRead(BACK_LEFT_ENC_PIN_A);
     uint8_t b = digitalRead(BACK_LEFT_ENC_PIN_B);
     uint8_t state = (a << 1) | b;
-    back_left_enc_pos += ENC_STATES[(back_left_prev << 2) | state];
+    back_left_enc_pos += -ENC_STATES[(back_left_prev << 2) | state];
     back_left_prev = state;
 }
 
@@ -58,8 +58,7 @@ void IRAM_ATTR backRightISR() {
     uint8_t a = digitalRead(BACK_RIGHT_ENC_PIN_A);
     uint8_t b = digitalRead(BACK_RIGHT_ENC_PIN_B);
     uint8_t state = (a << 1) | b;
-    // Preserve original back-right direction inversion
-    back_right_enc_pos += ENC_STATES[(back_right_prev << 2) | state];
+    back_right_enc_pos += -ENC_STATES[(back_right_prev << 2) | state];
     back_right_prev = state;
 }
 

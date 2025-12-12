@@ -162,7 +162,7 @@ def generate_launch_description():
         relay_cmd_vel_node,
         sensors_launch,
         stepper_motor_node,
-        rosbridge_websocket_launch,
-        scanning_launch
+        # rosbridge_websocket_launch,
+        # scanning_launch
     ])
     

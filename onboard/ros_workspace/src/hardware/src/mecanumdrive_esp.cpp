@@ -18,7 +18,7 @@ hardware_interface::CallbackReturn MecanumDriveEsp::on_init(const hardware_inter
   // Load parameters from the URDF/XACRO
   // Using the updated member names as defined in the Config struct
   cfg_.left_front_wheel_name = info_.hardware_parameters["left_front_wheel_name"];
-  cfg_.right_front_wheel_name = info_.hardware_parameters["right_front_wheel_name"];
+  cfg_.right_front_wheel_name = info_.hardware_parameters["right_front_wheīel_name"];
   cfg_.left_rear_wheel_name = info_.hardware_parameters["left_rear_wheel_name"];
   cfg_.right_rear_wheel_name = info_.hardware_parameters["right_rear_wheel_name"];
   
