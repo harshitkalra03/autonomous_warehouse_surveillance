@@ -44,12 +44,12 @@ def generate_launch_description():
             'transform_publish_period': 0.1,
             'throttle_scans': 1,
             'max_laser_range': 12.0,
-            'minimum_travel_distance': 0.1,
             'minimum_travel_heading': 0.1,
             'start_with_default_pose': True,
             'first_map_only': False,
-            'minimum_travel_distance': 0.75
-            
+            'minimum_travel_distance': 0.5,
+            'distance_variance_penalty': 3.5,
+            'angle_variance_penalty': 2.0,
         }],
     )
 
@@ -144,6 +144,20 @@ def generate_launch_description():
         output='screen'
     )
 
+    laser_filter_node = Node(
+        package='warehouse_robot_bringup',
+        executable='laser_filter.py',
+        name='laser_filter',
+        output='screen'
+    )
+
+    # velocity_scaler_node = Node(
+    #     package='warehouse_robot_bringup',
+    #     executable='velocity_scaler.py',
+    #     name='velocity_scaler',
+    #     output='screen'
+    # )
+
     return LaunchDescription([
         rviz2_node,
         slam_node,
@@ -152,6 +166,8 @@ def generate_launch_description():
         joy_node_1,
         joy_node_2,
         motor_command_node,
+        laser_filter_node,
+        # velocity_scaler_node,
     ])
 
                                                                                                                                                                                                                                                                                                                            
