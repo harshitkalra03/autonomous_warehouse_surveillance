@@ -1,0 +1,64 @@
+BOM (Bill of Material),,,,,,
+Part_ID,Part_Name,Manufacturer,Quantity,Supporting Docs,Price per piece,Total
+Electronics,,,,,,
+1749034,Raspberry Pi 5 Model 8GB RAM,Raspberry Pi,1,Link,10089,10089
+R160082,Official Raspberry Pi Micro SD Card 32GB A2 Class,Raspberry Pi,1,Link,639,639
+Not Provided (Product Link Attached),"Ambrane Unbreakable 3A Fast Charging 1.5m Braided Type C Cable for Smartphones, Tablets & other Type C devices, 480Mbps Data Sync",Ambrane,1,Link,149,149
+1858029,Waveshare Aluminium Alloy Case (H) for Raspberry Pi 5,Waveshare,1,Link,,0
+887613,YDLIDAR X2 2D LiDAR Sensor,ydlidar,1,Link,5812,5812
+RMCS-5032,Rhino 200RPM 15Kgcm 12V DC Planetary Geared Quad Encoder Servo Motor,Rhino,4,Link,2183,8732
+2777,Cytron Enhanced 13Amp DC Motor Driver 30A peak (10 seconds) MD10C,Cytron,4,Link,1167,4668
+R122835,"70-065-63 10A-SIBA-70-065-63 10A-Fuse, Cartridge",SIBA,4,Link,14,56
+1897066,Fuse Holder-BF-033,JDH,4,Link,22,88
+RMCS-1025,Stepper Motor NEMA23 19Kgcm Torque - Economy,Supplier: Robokits India,1,Link,1416,1416
+43211,Two Trees TB6600 Stepper Motor Driver Controller 4A 9~42V TTL 16 Micro-Step CNC 1 Axis,TOSHIBA,1,Link,310,310
+960-001587,Logitech Brio 100 Full HD Webcam,Logitech,1,Link,2995,2995
+1242788,Pro-Range NMC 21700 22.2V 20000mAh 3C 6S4P Li-Ion Battery Pack,Orange,1,Link,10503,10503
+R150150,Amass XT60 Male Connector – XT60-M.G.Y,Amass,1,Link,30,30
+31506,20 x 30 cm Universal Double-Sided PCB Prototype Board,Imported By: Macfos Ltd,1,Link,498,498
+975683,24V/12V to 5V 5A Power Module DC-DC XY-3606 Power Converter,Generic,1,Link,158,158
+815794,200W 20A DC-DC Buck Converter Step Down Module Constant Current LED Driver Module,Imported By: Macfos Ltd,1,Link,350,350
+1510171,XL4015 5A DC-DC Step Down Adjustable Power Supply Buck Module LED with Heatsink,"XL4015 chip manufacturer: XLSEMI
+Import by: Macfos Ltd.",1,Link,66,66
+ROS26,30A 250V DPST ON-OFF Rocker Switch,Model: ZH02-Ax,1,Link,91,91
+1121394,"Red Mushroom Cap LAY37-, 11ZS 1NO 1NC DPST, Emergency Stop Push, Button Switch AC 690V 10A",Generic,1,Link,99,99
+1150699,6-60V SSR 100DD Relay,Fotek,1,Link,793,793
+‎esp32-wroom32-001,Prakti ESP32 WROOM-32 NodeMCU ESP32 Development Board,PRAKTI ENTERPRISES,1,Link,420,420
+Not Provided (Product Link Attached),"Ambrane Unbreakable 60W / 3A Fast Charging 1.5m Braided Micro USB Cable for Smartphones, Tablets, Laptops & Other Micro USB Devices",Ambrane,1,Link,129,129
+R165711,DFRobot Fermion BNO055 Intelligent 9-Axis Sensor,DFRobot,1,Link,2001,2001
+TB002-500-02BE,2 Pin Screw Terminals ,"Same Sky
+Import by: DigiKey",6,Link,35.97,215.82
+TB002-500-03BE,3 Pin Screw Terminals,"Same Sky
+Import by: DigiKey",3,Link,53.06,159.18
+539050,1.27mm 1×40 Pin Female Single Row Header Strip,Generic,3,Link,42,126
+7450,Male to Female Jumper Wires 40Pcs 20cm,Generic,5,Link,38,190
+1824998,High Quality Ultra Flexible 22AWG Silicone Wire – Red,Import by: Macfos Ltd,2,Link,18,36
+R179511,High Quality Ultra Flexible 16AWG Silicone Wire – red,Import by: Macfos Ltd,2,Link,49,98
+‎BE 487474,"BELLOX 560Pieces Heat Shrink Tubing 2:1- Electrical Wire Cable Sleeving Wrap, Cable Wrap Assortment Electric Insulation Heat Shrink Tube Kit with Box(5 colors/12 Sizes) Black, Red, Blue,Yellow,Green",Bellox Enterprise,1,Link,315,315
+18279,Nylon Cable Zip Ties 150 mm White (100pcs),Generic,1,Link,72,72
+,,,,,Total Cost,51304
+,,,,,,
+Mobile base Frame,,,,,,
+RMCS-3057,Motor Mount,Rhino,4,Link,123.9,495.6
+44223,EasyMech 127mm Aluminium Mecanum Bearing Type Roller Wheels (2 Left and 2 Right),EasyMech,1,Link,13368.96,13368.96
+29680,EasyMech Bracket for NEMA 23 Stepper Motor Bend Sturdy Mount,EasyMech,1,Link,239,239
+886058,EasyMech1500 mm 20X20 4T Slot Aluminium Extrusion Profile (Silver),EasyMech,8,Link,660,5280
+1166276,EasyMech Aluminium Alloy Built-In Corner Slot Connector For 20 Series Profile With Grub – Pack of 4,EasyMech,1,Link,253,253
+,,,,,Total Cost,19636.56
+,,,,,,
+Vertical Scanning Mechanism,,,,,,
+316744,eSUN PLA+ 1.75mm 3D Printing Filament 1kg-White,eSun,2,Link,1270,2540
+844726,EasyMech M4 MS Sliding T Nut For 2020 Series Aluminium Extrusion Profile – 10 Pcs,EasyMech,5,Link,224,1120
+52022,10M GT2 Width 6mm Black Open Timing Belt,Import by: Macfos Ltd.,1,Link,882,882
+RKI-2167,Aluminum GT2 Timing Idler Pulley For 6mm Belt 20 Tooth 5mm Bore,Import by: Macfos Ltd.,4,Link,105.2,420.8
+Fdit8utzsr0cwg1430,"Fdit V Groove Pulley, Wear- with 20 Pieces of Wheels V-Type Pulley",Fdit,1,Link,2928,2928
+52303,SC8UU 8 mm Linear Ball Bearing Slide,Techtonics,1,Link,99,99
+52748,Two Trees SH8A SK8 8mm linear bearing rail support XYZ Shaft Table CNC Router (2Pcs),Two Trees,1,Link,104,104
+RKI-6024,Astro Super Smooth Hard Chrome plated 8mm diameter carbon steel rod 1000mm long,Astro Brand,2,Link,330.4,660.8
+457677,625RS Rubber Sealed Ball Bearing Miniature Bearing 5 x 16 x 5 mm 2 pcs,Generic,2,Link,48,96
+Not Provided (OnlyScrews Product Link Attached),"Phillips Pan Head Assorted Screw Pack M3, M4 & M5 (SS304)",OnlyScrews,2,Link,840,1680
+KP08,KP08 8mm Bore Inner Ball Mounted Pillow Block Insert Bearing,OnlyScrews,2,Link,150,300
+,,,,,Total Cost,10830.6
+,,,,,,
+,,,,,Prototype Cost,81771.16
+,Estimated Shipping time,Subject to courier service; generally 3–7 business days for domestic orders,,,,
