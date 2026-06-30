@@ -1,0 +1,4 @@
+BNO055 ---> ESP32 (I2C Connections)
+RPI ---> ESP32 (Serial UART)
+RPI ---> Camera (Serial UART)
+RPI ---> LiDAR (Serial UART)
